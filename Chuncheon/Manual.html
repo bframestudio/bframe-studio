@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>B:FRAME STUDIO — 이용 안내</title>
+<title>B:FRAME STUDIO — 촬영 안내</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -96,11 +96,11 @@ nav {
 .flow-inner {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0;
+  justify-content: space-between;
+  width: 100%;
   flex-wrap: nowrap;
 }
-.flow-item { text-align: center; flex-shrink: 0; }
+.flow-item { text-align: center; flex: 1; }
 .flow-title { font-size: 15px; font-weight: 700; color: var(--tx); }
 .flow-time { font-size: 12px; color: var(--or); font-weight: 600; margin-top: 2px; }
 .flow-arrow { color: var(--t); font-size: 20px; margin: 0 12px; flex-shrink: 0; }
@@ -473,164 +473,236 @@ textarea { resize: none; }
 <nav>
   <div class="logo"><div class="logo-icon">&#128247;</div><div class="logo-text">B:<span>FRAME</span> STUDIO</div></div>
   <div class="nav-tabs">
-    <a href="Notice.html" target="_top" class="nbtn active" style="text-decoration:none;">이용 안내</a>
-    <a href="Manual.html" target="_top" class="nbtn" style="text-decoration:none;">촬영 안내</a>
+    <a href="Notice.html" target="_top" class="nbtn" style="text-decoration:none;">이용 안내</a>
+    <a href="Manual.html" target="_top" class="nbtn active" style="text-decoration:none;">촬영 안내</a>
     <a href="Retouch.html" target="_top" class="nbtn" style="text-decoration:none;">보정 신청</a>
   </div>
 </nav>
-<div style="display:block;">
-  <div style="max-width:660px;margin:0 auto;padding:1rem 1rem 3rem;">
+<div style="display:block;padding:0;">
+  <div id="midx" style="max-width:660px;margin:0 auto;padding:1.25rem 1.1rem 2rem;">
+    <div class="ph"><h2>촬영 가이드</h2><p>항목을 클릭하면 상세 안내로 이동합니다</p></div>
 
-    <!-- 경고 배너 -->
-    <div style="background:#FFF8F0;border-left:4px solid var(--or);border-radius:0 10px 10px 0;padding:12px 16px;margin-bottom:1.5rem;display:flex;align-items:center;gap:10px;">
-      <span style="font-size:16px;flex-shrink:0;">&#9888;&#65039;</span>
-      <span style="font-size:13px;color:#8A5A10;font-weight:600;line-height:1.6;">안내 미숙지로 인한 불이익은 보상이 어렵습니다. 이용 전 꼭 읽어주세요!</span>
-    </div>
-
-    <!-- 1. 무인 시스템 -->
-    <div style="margin-bottom:1rem;">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-        <div style="width:24px;height:24px;background:var(--t);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;color:white;flex-shrink:0;">&#128247;</div>
-        <span style="font-size:16px;font-weight:700;color:var(--tx);">100% 비대면 <b style="color:var(--or);">무인 시스템</b></span>
-      </div>
-      <div style="background:white;border-radius:12px;border:1px solid var(--bd);padding:14px 16px;display:flex;flex-direction:column;gap:8px;">
-        <div style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--mu);line-height:1.7;">
-          <span style="color:var(--t);font-size:16px;line-height:1.4;flex-shrink:0;">&#8226;</span>
-          <span>비프레임 스튜디오는 비대면 무인시스템으로 운영됩니다.</span>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--mu);line-height:1.7;">
-          <span style="color:var(--t);font-size:16px;line-height:1.4;flex-shrink:0;">&#8226;</span>
-          <span>무인 스튜디오 특성상 <b style="color:var(--or);">당일 보정은 불가능</b>합니다.</span>
-        </div>
+    <!-- 이용순서 모식도 -->
+    <div class="flow-box">
+      <div class="flow-inner">
+        <div class="flow-item"><div class="flow-title">촬영</div><div class="flow-time">(30분)</div></div>
+        <div class="flow-arrow">&#8594;</div>
+        <div class="flow-item"><div class="flow-title">셀렉 및 인화</div><div class="flow-time">(20분)</div></div>
+        <div class="flow-arrow">&#8594;</div>
+        <div class="flow-item"><div class="flow-title">원본 백업<br>및 정리</div><div class="flow-time">(5분)</div></div>
       </div>
     </div>
 
-    <!-- 2. 이용 시간 -->
-    <div style="margin-bottom:1rem;">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-        <div style="width:24px;height:24px;background:var(--t);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;color:white;flex-shrink:0;">&#9200;</div>
-        <span style="font-size:16px;font-weight:700;color:var(--tx);">이용 가능 시간 총 <b style="color:var(--or);">55분</b></span>
+    <!-- 섹션 목록 -->
+    <div class="idx">
+      <div class="irow" onclick="goSec(0)">
+        <div class="il"><div class="inum">1</div><div><div class="ittl">장비 구성</div></div></div>
+        <span class="chev">&#8250;</span>
       </div>
-      <div style="background:white;border-radius:12px;border:1px solid var(--bd);padding:16px;">
-        <!-- 모식도 -->
-        <div style="display:flex;align-items:center;justify-content:center;gap:0;padding:8px 0 14px;border-bottom:1px solid var(--bd);margin-bottom:14px;">
-          <div style="text-align:center;flex-shrink:0;">
-            <div style="font-size:14px;font-weight:700;color:var(--tx);">촬영</div>
-            <div style="font-size:12px;color:var(--or);font-weight:600;margin-top:2px;">(30분)</div>
-          </div>
-          <div style="color:var(--t);font-size:16px;margin:0 10px;flex-shrink:0;">&#8594;</div>
-          <div style="text-align:center;flex-shrink:0;">
-            <div style="font-size:14px;font-weight:700;color:var(--tx);">셀렉 및 인화</div>
-            <div style="font-size:12px;color:var(--or);font-weight:600;margin-top:2px;">(20분)</div>
-          </div>
-          <div style="color:var(--t);font-size:16px;margin:0 10px;flex-shrink:0;">&#8594;</div>
-          <div style="text-align:center;flex-shrink:0;">
-            <div style="font-size:13px;font-weight:700;color:var(--tx);">원본 백업<br>및 정리</div>
-            <div style="font-size:12px;color:var(--or);font-weight:600;margin-top:2px;">(5분)</div>
-          </div>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--mu);line-height:1.7;margin-bottom:8px;">
-          <span style="color:var(--t);font-size:16px;line-height:1.4;flex-shrink:0;">&#8226;</span>
-          <span>예약 시간 전 미리 오셔서 대기룸에서 준비하실 수 있습니다.</span>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:8px;font-size:13px;color:#8A5A10;line-height:1.7;background:#FFF8F0;border-radius:8px;padding:10px 12px;">
-          <span style="flex-shrink:0;">&#9888;&#65039;</span>
-          <span>다음 예약 손님을 위해 <b style="color:#8A5A10;">정시 퇴실</b> 부탁드립니다.</span>
-        </div>
+      <div class="arr">&#8595;</div>
+      <div class="irow" onclick="goSec(1)">
+        <div class="il"><div class="inum">2</div><div><div class="ittl">촬영 준비</div></div></div>
+        <span class="chev">&#8250;</span>
+      </div>
+      <div class="arr">&#8595;</div>
+      <div class="irow" onclick="goSec(2)">
+        <div class="il"><div class="inum">3</div><div><div class="ittl">촬영 후 필터 변경 <span class="opt">선택</span></div></div></div>
+        <span class="chev">&#8250;</span>
+      </div>
+      <div class="arr">&#8595;</div>
+      <div class="irow" onclick="goSec(3)">
+        <div class="il"><div class="inum">4</div><div><div class="ittl">사진 내보내기</div></div></div>
+        <span class="chev">&#8250;</span>
+      </div>
+      <div class="arr">&#8595;</div>
+      <div class="irow" onclick="goSec(4)">
+        <div class="il"><div class="inum">5</div><div><div class="ittl">사진 인화</div></div></div>
+        <span class="chev">&#8250;</span>
+      </div>
+      <div class="arr">&#8595;</div>
+      <div class="irow" onclick="goSec(5)">
+        <div class="il"><div class="inum">6</div><div><div class="ittl">원본 챙기기</div></div></div>
+        <span class="chev">&#8250;</span>
       </div>
     </div>
-
-    <!-- 5. 무단 조작 금지 -->
-    <div style="margin-bottom:1rem;">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-        <div style="width:24px;height:24px;background:var(--t);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;color:white;flex-shrink:0;">&#128683;</div>
-        <span style="font-size:16px;font-weight:700;color:var(--tx);">무단 <b style="color:var(--or);">조작 및 설정 금지</b></span>
-      </div>
-      <div style="background:white;border-radius:12px;border:1px solid var(--bd);padding:14px 16px;">
-        <div style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--mu);line-height:1.7;">
-          <span style="color:var(--t);font-size:16px;line-height:1.4;flex-shrink:0;">&#8226;</span>
-          <span>영상 및 메뉴얼에 언급되지 않는 카메라 조작 및 프로그램 설정은 <b style="color:var(--or);">절대 건드리지 말아주세요.</b></span>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--mu);line-height:1.7;margin-top:8px;">
-          <span style="color:var(--t);font-size:16px;line-height:1.4;flex-shrink:0;">&#8226;</span>
-          <span>소품 및 촬영 장비 파손 시 <b style="color:var(--or);">100% 변상</b>해주셔야 합니다.</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 6. 스튜디오 이용 에티켓 -->
-    <div style="margin-bottom:1rem;">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-        <div style="width:24px;height:24px;background:var(--t);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;color:white;flex-shrink:0;">&#128149;</div>
-        <span style="font-size:16px;font-weight:700;color:var(--tx);">스튜디오 이용 에티켓</span>
-      </div>
-      <div style="background:white;border-radius:12px;border:1px solid var(--bd);padding:14px 16px;display:flex;flex-direction:column;gap:8px;">
-        
-        <div style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--mu);line-height:1.7;"><span style="color:var(--t);font-size:16px;line-height:1.4;flex-shrink:0;">&#8226;</span><span><b style="color:var(--or);">음료 및 음식물 반입 금지</b>입니다.</span></div>
-        <div style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--mu);line-height:1.7;"><span style="color:var(--t);font-size:16px;line-height:1.4;flex-shrink:0;">&#8226;</span><span>촬영 시 사용된 소품 및 스툴 등 뒷정리 부탁드립니다.</span></div>
-        <div style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--mu);line-height:1.7;"><span style="color:var(--t);font-size:16px;line-height:1.4;flex-shrink:0;">&#8226;</span><span>아기 기저귀, 반려동물 배변패드는 꼭 회수해 가셔야 합니다.</span></div>
-      </div>
-    </div>
-
-    <!-- 7. 출입 공간 안내 -->
-    <div style="margin-bottom:1rem;">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-        <div style="width:24px;height:24px;background:var(--t);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:white;flex-shrink:0;">&#8252;</div>
-        <span style="font-size:16px;font-weight:700;color:var(--tx);">스튜디오 출입 안내</span>
-      </div>
-      <div style="background:white;border-radius:12px;border:1px solid var(--bd);padding:14px 16px;display:flex;flex-direction:column;gap:8px;">
-        <div style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--mu);line-height:1.7;"><span style="color:var(--t);font-size:16px;line-height:1.4;flex-shrink:0;">&#8226;</span><span>샵인샵 구조로 타 매장과 출입문을 공유하고 있습니다.</span></div>
-        <div style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--mu);line-height:1.7;"><span style="color:var(--t);font-size:16px;line-height:1.4;flex-shrink:0;">&#8226;</span><span>타 매장 방문자가 들어올 수 있으니 놀라지 않으셔도 됩니다 &#128522;</span></div>
-        <div style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--mu);line-height:1.7;"><span style="color:var(--t);font-size:16px;line-height:1.4;flex-shrink:0;">&#8226;</span><span>타 매장에 피해가 가지 않도록 <b style="color:var(--or);">대기룸 내 슬라이딩문은 열지 말아주세요</b> &#128591;</span></div>
-      </div>
-    </div>
-
-    <!-- 4. 반려견 -->
-    <div style="margin-bottom:1rem;">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-        <div style="width:24px;height:24px;background:var(--t);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;color:white;flex-shrink:0;">&#128054;</div>
-        <span style="font-size:16px;font-weight:700;color:var(--tx);">반려견 이용 안내</span>
-      </div>
-      <div style="background:white;border-radius:12px;border:1px solid var(--bd);padding:14px 16px;">
-        <div style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--mu);line-height:1.7;">
-          <span style="color:var(--t);font-size:16px;line-height:1.4;flex-shrink:0;">&#8226;</span>
-          <span>대기룸 내 거울 앞 서랍장에 <b style="color:var(--or);">매너벨트</b>가 준비되어 있으니 착용 부탁드립니다 &#128591;</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 8. 주차 + 지도 -->
-    <div style="margin-bottom:1rem;">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-        <div style="width:24px;height:24px;background:var(--t);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;color:white;flex-shrink:0;">&#128205;</div>
-        <span style="font-size:16px;font-weight:700;color:var(--tx);">오시는 길</span>
-      </div>
-      <div style="background:white;border-radius:12px;border:1px solid var(--bd);overflow:hidden;">
-        <div style="padding:14px 16px;border-bottom:1px solid var(--bd);">
-          <div style="font-size:15px;font-weight:700;color:var(--tx);">춘천시 서부대성로 176, 3층</div>
-          <div style="font-size:13px;color:var(--mu);margin-top:3px;">중부지구대 옆, 왕대박부동산건물 3층</div>
-        </div>
-        <div style="display:flex;align-items:stretch;">
-          <div style="background:var(--t-light);padding:12px;flex-shrink:0;width:52%;display:flex;align-items:center;justify-content:center;"><img src="https://lh3.googleusercontent.com/d/1CEineK9iDyhoNXcbirvGaIm_KY1ZHdSe" alt="지도" style="width:100%;border-radius:8px;border:1.5px solid var(--t-mid);display:block;box-shadow:0 2px 8px rgba(74,127,127,0.15);"></div>
-          <div style="flex:1;padding:14px;display:flex;flex-direction:column;gap:10px;justify-content:center;">
-            <div style="display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--mu);line-height:1.6;"><span>&#128683;</span><span>건물 내 주차 불가</span></div>
-            <div style="display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--mu);line-height:1.6;"><span>&#128683;</span><span>건물 앞 도로변 주차 불가</span></div>
-            <div style="display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--t);font-weight:600;line-height:1.6;"><span>&#128663;</span><span>건물 옆 골목 주차 가능</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 마무리 -->
-    <div style="text-align:center;padding:1.5rem 1rem;background:white;border-radius:12px;border:1px solid var(--bd);margin-top:0.5rem;">
-      <div style="font-size:20px;margin-bottom:8px;">&#128155;</div>
-      <p style="font-size:14px;color:var(--mu);line-height:1.9;">이용 중 불편 사항이 있으시면 언제든 바로 연락 주세요 &#128222;<br>소중한 예약 감사드리며, 즐거운 촬영 되세요!</p>
-      <div style="font-size:13px;font-weight:700;color:var(--t);margin-top:10px;">– B:FRAME 스튜디오 춘천강원대점 –</div>
-    </div>
-
   </div>
+  <div id="msec" style="display:none;max-width:660px;margin:0 auto;padding:1.25rem 1.1rem 3rem;">
+    <div class="shd"><button class="back" onclick="backIdx()">&#8592; 목록</button>
+      <div style="display:flex;align-items:center;gap:8px;"><div class="snum" id="sec-num">2</div><div class="sttl" id="sec-ttl"></div></div>
+    </div>
+    <div id="sec-body"></div>
+  </div>
+
+  <!-- 섹션 템플릿 -->
+  <div id="tpl-0" style="display:none;">
+    <div class="step"><div class="shd2"><div class="sn">&#128203;</div><div class="st">장비 구성</div></div>
+      <div class="sb"><p class="desc">스튜디오에는 카메라, 실시간모니터, 메인모니터, 컴퓨터, 프린터, 리모컨이 준비되어 있습니다.</p>
+        <img class="si" data-key="equip" alt="장비 구성"></div></div>
+
+  
+    <button class="back-bottom" onclick="backIdx()">&#8592; 목록으로 돌아가기</button>
+  </div>
+  <div id="tpl-1" style="display:none;">
+    <div class="step"><div class="shd2"><div class="sn">1</div><div class="st">라이트룸 실행</div></div>
+      <div class="sb"><p class="desc">바탕화면에서 라이트룸(LrC)을 실행시켜 주세요.</p>
+        <img class="si" data-key="lr_run" alt="라이트룸 실행">
+        <div style="margin-top:8px"><div class="warn">&#9888;&#65039; 컴퓨터가 꺼져 있다면 컴퓨터를 먼저 켠 후 라이트룸을 실행하세요.</div>
+        <img class="si" data-key="power" alt="컴퓨터 전원"></div></div></div>
+    <div class="step"><div class="shd2"><div class="sn">2</div><div class="st">연결전송된 촬영 시작</div></div>
+      <div class="sb"><p class="desc">상단 <b style="color:var(--or)">파일</b> 탭 &#8594; <b style="color:var(--or)">연결전송된 촬영</b> &#8594; <b style="color:var(--or)">연결전송된 촬영 시작</b> 클릭!</p>
+        <img class="si" data-key="tethered" alt="파일 메뉴"></div></div>
+    <div class="step"><div class="shd2"><div class="sn">3</div><div class="st">세션 이름 입력</div></div>
+      <div class="sb"><p class="desc">연결전송된 촬영 설정 창의 세션 이름에 <b style="color:var(--or)">성함을 입력</b>한 후 확인 클릭!</p>
+        <img class="si" data-key="session" alt="세션 이름"></div></div>
+    <div class="step"><div class="shd2"><div class="sn">4</div><div class="st">촬영 컨트롤러 확인</div></div>
+      <div class="sb"><p class="desc">화면 중간에 촬영 컨트롤러가 뜨면 준비완료! 아래 설정값을 확인해주세요.</p>
+        <div class="rinfo" style="margin-top:8px;">
+          <div>&#128247; 카메라명: <b style="color:var(--or);">Canon EOS R6</b></div>
+          <div>&#9201;&#65039; 셔터: <b style="color:var(--or);">100</b> &nbsp;|&nbsp; 조리개: <b style="color:var(--or);">7.1</b> &nbsp;|&nbsp; ISO: <b style="color:var(--or);">200</b></div>
+          <div>&#127774; WB: <b style="color:var(--or);">자동</b></div>
+        </div>
+        <img class="si" data-key="camera_ok" alt="컨트롤러">
+        <div class="warn">&#9888;&#65039; 카메라없음으로 표시된다면, 카메라에 연결된 선들이 모두 잘 꼽혀있는지 확인한 후, 라이트룸을 재시작해주세요.</div>
+        <div style="margin-top:12px"><p class="desc">모든 모니터 화면이 잘 켜져 있는지 확인해주세요.</p>
+        <img class="si" data-key="monitor_check" alt="모니터 확인"></div></div></div>
+    <div class="step"><div class="shd2"><div class="sn">5</div><div class="st">필터 적용</div></div>
+      <div class="sb"><p class="desc">촬영 컨트롤러의 <b style="color:var(--or)">현상설정</b>에서 <b style="color:var(--or)">사용자 사전 설정</b>을 눌러 원하는 필터로 변경하세요.</p><p class="desc" style="margin-top:6px;"><b style="color:var(--or)">우측 동그라미 버튼</b>을 클릭하여 필터가 잘 적용되었는지 확인해주세요.</p>
+        <img class="si" data-key="filter_select" alt="필터 선택">
+        <div class="warn">&#9888;&#65039; 필터를 설정하신 뒤에 촬영 하셔야 필터가 적용됩니다!</div></div></div>
+    <div class="step"><div class="shd2"><div class="sn">6</div><div class="st">리모컨 선택 및 촬영 시작</div></div>
+      <div class="sb"><p class="desc">사용하는 리모컨의 종류를 선택하세요.</p>
+        <div class="rinfo"><div><b style="color:var(--t)">무선리모컨</b> 사용 시 &#8594; 리모컨 선택기 <b style="color:var(--t)">&#9312; 버튼</b></div>
+        <div><b style="color:var(--or)">유선리모컨</b> 사용 시 &#8594; 리모컨 선택기 <b style="color:var(--or)">&#9313; 버튼</b></div></div>
+        <img class="si" data-key="remote" alt="리모컨 선택기">
+        <div class="tip">&#128161; 리모컨 사용 후 반드시 제자리에 넣어주세요!!</div>
+        <div style="margin-top:12px"><p class="desc">리모컨을 눌렀을 때 모니터에 촬영 결과가 나오면 준비 끝! 즐거운 촬영 시작!!</p>
+        <img class="si" data-key="monitor_final" alt="촬영 결과"></div></div></div>
+  
+    <button class="back-bottom" onclick="backIdx()">&#8592; 목록으로 돌아가기</button>
+  </div>
+  <div id="tpl-2" style="display:none;">
+    <div class="step"><div class="shd2"><div class="sn">1</div><div class="st">필터 변경할 사진 선택</div></div>
+      <div class="sb"><p class="desc">화면 하단에 뜬 촬영사진 중 필터 변경을 원하는 사진을 선택한 뒤, <b style="color:var(--or)">Ctrl</b>을 클릭하여 나머지 사진도 선택해주세요.</p>
+        <img class="si" data-key="photo_select" alt="사진 선택"></div></div>
+    <div class="step"><div class="shd2"><div class="sn">2</div><div class="st">사전설정 목록 열기</div></div>
+      <div class="sb"><p class="desc">라이트룸창 <b style="color:var(--or)">왼쪽 가장자리에 있는 세모</b>에 마우스를 올리면 사전설정 목록이 열립니다.</p>
+        <img class="si" data-key="filter_change" alt="사전설정 목록" style="max-width:260px;"></div></div>
+    <div class="step"><div class="shd2"><div class="sn">3</div><div class="st">설정 동기화</div></div>
+      <div class="sb"><p class="desc">상단 <b style="color:var(--or)">설정</b> 탭 &#8594; <b style="color:var(--or)">설정 동기화</b> 클릭!</p>
+        <img class="si" data-key="sync1" alt="설정 동기화">
+        <div style="margin-top:10px"><p class="desc">동기화 창이 뜨면 <b style="color:var(--or)">동기화 버튼</b> 클릭!</p>
+        <img class="si" data-key="sync2" alt="동기화 버튼"></div>
+        <div class="tip">&#128161; 동기화 작업은 1장당 1초 정도 소요됩니다. 완료될 때까지 기다려주세요~</div></div></div>
+  
+    <button class="back-bottom" onclick="backIdx()">&#8592; 목록으로 돌아가기</button>
+  </div>
+  <div id="tpl-3" style="display:none;">
+    <div class="step"><div class="shd2"><div class="sn">1</div><div class="st">전체 선택 후 내보내기</div></div>
+      <div class="sb"><p class="desc">화면 하단 촬영사진 중 하나를 선택한 뒤 <b style="color:var(--or)">Ctrl+A</b>로 전체 선택 &#8594; 우클릭 &#8594; <b style="color:var(--or)">내보내기</b> &#8594; <b style="color:var(--or)">내보내기</b> 클릭!</p>
+        <img class="si" data-key="export1" alt="내보내기 메뉴">
+        <div class="warn">&#9888;&#65039; 사진 전체를 선택해야 합니다!</div></div></div>
+    <div class="step"><div class="shd2"><div class="sn">2</div><div class="st">성함 입력 후 내보내기</div></div>
+      <div class="sb"><p class="desc">하위 폴더에 넣기에 <b style="color:var(--or)">고객님 성함을 입력</b>한 후 내보내기 클릭!</p>
+        <img class="si" data-key="export2" alt="폴더 설정">
+        <div class="warn">&#9888;&#65039; 저장경로 및 다른 설정은 절대 건드리시면 안됩니다!</div></div></div>
+    <div class="step"><div class="shd2"><div class="sn">3</div><div class="st">내보내기 진행 중</div></div>
+      <div class="sb"><p class="desc">화면 좌측 상단에 내보내기 현황이 표시됩니다. 100장 기준 <b style="color:var(--or)">약 3분</b> 소요됩니다.</p>
+        <img class="si" data-key="exporting" alt="내보내는 중">
+        <div style="margin-top:10px"><p class="desc">바탕화면에 성함으로 된 폴더가 생성됩니다.</p>
+        <img class="si" data-key="folder_created" alt="폴더 생성" style="max-width:100px;margin-top:8px;"></div>
+        <div class="tip">&#128161; 내보내기를 기다릴 필요 없이 라이트룸을 최소화한 뒤 바탕화면 폴더에서 인화할 사진을 선택해주세요.</div>
+        <img class="si" data-key="photo_pick" alt="사진 선택" style="margin-top:10px"></div></div>
+  
+    <button class="back-bottom" onclick="backIdx()">&#8592; 목록으로 돌아가기</button>
+  </div>
+  <div id="tpl-4" style="display:none;">
+
+    <div class="step"><div class="shd2"><div class="sn">1</div><div class="st">인화지 &amp; 종이액자 꺼내기</div></div>
+      <div class="sb"><p class="desc">필요한 수량의 인화지와 종이액자를 꺼내주세요.</p>
+        <img class="si" data-key="paper_out" alt="인화지 꺼내기">
+        <div class="paper-box">
+          <div class="paper-box-title">&#128161; 인화지 수량 안내</div>
+          <table class="paper-tbl">
+            <thead><tr><th>인원</th><th>인화지 수량</th></tr></thead>
+            <tbody>
+              <tr><td>1인 촬영</td><td>2장</td></tr>
+              <tr><td>2~3인 촬영</td><td>3장</td></tr>
+              <tr><td>추가 인원</td><td>1인당 1장 추가</td></tr>
+            </tbody>
+          </table>
+        </div></div></div>
+    <div class="step"><div class="shd2"><div class="sn">2</div><div class="st">인화지 프린터에 넣기</div></div>
+      <div class="sb"><p class="desc"><b style="color:var(--or)">인화면이 앞을 보게</b> 인화지를 넣어주세요. 트레이를 앞으로 빼주세요!</p>
+        <img class="si" data-key="paper_in" alt="인화지 넣기"></div></div>
+    <div class="step"><div class="shd2"><div class="sn">3</div><div class="st">사진 인쇄하기</div></div>
+      <div class="sb"><p class="desc">바탕화면에 생성된 폴더에서 인화할 사진을 <b style="color:var(--or)">더블 클릭</b> 후, 뷰어창 상단 <b style="color:var(--or)">인쇄 아이콘 클릭!</b></p>
+        <img class="si" data-key="print1" alt="인쇄 아이콘">
+        <div style="margin-top:10px"><p class="desc">사진 인쇄 창이 뜨면 다른 설정은 건드리지 말고 <b style="color:var(--or)">인쇄 클릭!</b></p>
+        <img class="si" data-key="print2" alt="인쇄 설정"></div>
+        <div class="warn">&#9888;&#65039; 다른 설정은 절대 건드리지 마시고 인쇄 클릭!</div></div></div>
+  
+    <button class="back-bottom" onclick="backIdx()">&#8592; 목록으로 돌아가기</button>
+  </div>
+  <div id="tpl-5" style="display:none;">
+    <div class="step"><div class="shd2"><div class="sn">1</div><div class="st">사진 폴더 압축하기</div></div>
+      <div class="sb"><p class="desc">촬영한 사진 폴더를 우클릭 메뉴에서 <b style="color:var(--or)">압축하기</b> 클릭!</p>
+        <img class="si" data-key="compress" alt="폴더 압축"></div></div>
+    <div class="step"><div class="shd2"><div class="sn">2</div><div class="st">원본 전송하기</div></div>
+      <div class="sb"><p class="desc">생성된 압축파일을 이메일, USB 등 원하는 매체로 전송!</p>
+        <img class="si" data-key="transfer" alt="타 매체 저장">
+        <div style="margin-top:10px"><p class="desc">카카오톡으로 전송 시 최대 100장씩 선택하여 채팅창으로 끌어오기 &#8594; <b style="color:var(--or)">묶어보내기</b>로 진행!</p>
+        <img class="si" data-key="kakao_send" alt="카카오톡 전송"></div>
+        <div class="tip">&#128161; 카카오톡 이용 시, 최대 100장씩 선택하여 묶어보내기로 진행해주세요.</div></div></div>
+    <div class="step"><div class="shd2"><div class="sn">3</div><div class="st">바탕화면 폴더 &amp; 압축파일 삭제</div></div>
+      <div class="sb"><p class="desc">원본 전송 후 바탕화면에 <b style="color:var(--or)">폴더와 압축파일을 삭제</b>해주세요.</p>
+        <img class="si" data-key="delete1" alt="폴더 삭제"></div></div>
+    <div class="step"><div class="shd2"><div class="sn">4</div><div class="st">라이트룸 사진 제거</div></div>
+      <div class="sb"><p class="desc">라이트룸에서 전체 선택 <b style="color:var(--or)">(Ctrl+A)</b> 후 우클릭 &#8594; <b style="color:var(--or)">사진 제거</b> 클릭!</p>
+        <img class="si" data-key="delete2" alt="라이트룸 사진 제거">
+        <div class="warn">&#9888;&#65039; 다음 고객님을 위해 반드시 사진 제거를 완료해 주세요!</div></div></div>
+  
+    <button class="back-bottom" onclick="backIdx()">&#8592; 목록으로 돌아가기</button>
+  </div>
+
 </div>
 
+<script>
+var srcMap={
+  equip:"https://lh3.googleusercontent.com/d/19596ne4isChWprnBEC3yZBf8htvWAJwk",
+  lr_run:"https://lh3.googleusercontent.com/d/1uAIloF3TyFNftrOCJ_-Kjfw9ujs8525h",
+  power:"https://lh3.googleusercontent.com/d/1Whow98O-rWrA6AkMrwEgEaMtswHD0If-",
+  tethered:"https://lh3.googleusercontent.com/d/14ClH5JAxQNjdiPXH7q0iunyfva8N14rT",
+  session:"https://lh3.googleusercontent.com/d/15whEL7PdwSHFn5CbhRjU-WBsft8mDNMS",
+  camera_ok:"https://lh3.googleusercontent.com/d/1I1ezQ2dy4nHtEz-9ethxRUZ_7IksZnfu",
+  monitor_check:"https://lh3.googleusercontent.com/d/1MJz5daHfdXV2DLXre8lz0QSEoTOi4pXh",
+  remote:"https://lh3.googleusercontent.com/d/136gbPYfagahf_89OBXzrjrbnP1iD9IUV",
+  filter_select:"https://lh3.googleusercontent.com/d/1JidU_2PCcHqbEV5RpnOMEdQ5l__OVE9i",
+  monitor_final:"https://lh3.googleusercontent.com/d/1PsTnd8m-CA_7HcfU4aIwDe86vNxZ7BVp",
+  photo_select:"https://lh3.googleusercontent.com/d/1tbWoKgrqlVIc8hMs8L9YxPqRZ6KN_0lF",
+  filter_change:"https://lh3.googleusercontent.com/d/11MJDTwWe5QJqpE_AvfHTndPwawWLKwxT",
+  sync1:"https://lh3.googleusercontent.com/d/1PVIGN20-sRlhTEbLPo3BlvwBrJwC5q-e",
+  sync2:"https://lh3.googleusercontent.com/d/1LYmaaRwGSIg2jyhuBOJtZ2W9a7PWGnay",
+  export1:"https://lh3.googleusercontent.com/d/1kEhhYMuHUZHOTLgXwC4UHdxoud_1fjdJ",
+  export2:"https://lh3.googleusercontent.com/d/13HBdk-M84gnRtdP5SAS74TMzTu8dE_qA",
+  exporting:"https://lh3.googleusercontent.com/d/1mo7d8eoNSiKOBBeMiBKvDZgf6i_BwTFX",
+  folder_created:"https://lh3.googleusercontent.com/d/1uYaJXbHgzbbuzJntVcb3CZ_1A8DXtYFm",
+  photo_pick:"https://lh3.googleusercontent.com/d/1rQsLVgRLPXfi7q1phbT4rOFQ9aSgwg1k",
+  paper_out:"https://lh3.googleusercontent.com/d/1UIj_P77-9y6FhFbQAbFwO7oBvL1MWitl",
+  paper_in:"https://lh3.googleusercontent.com/d/1Oj9I8d-qZZaN58gD4uPEpssbkcjXFQjt",
+  print1:"https://lh3.googleusercontent.com/d/1ZmWnBF8i3D-suqdYgbPlQthE33ref8lH",
+  print2:"https://lh3.googleusercontent.com/d/14OIW_FUdC71EvLpF25p-Aqs4D2YWDA49",
+  compress:"https://lh3.googleusercontent.com/d/1kGJF4ZA2GHwi06GuL_nSyHQJdEc6DhK4",
+  transfer:"https://lh3.googleusercontent.com/d/1d4nHagaSizAyr9dpqLfJENLYIn-oITXU",
+  kakao_send:"https://lh3.googleusercontent.com/d/1fspGq4dHPL5AwySiOSavqskhXg20m5_O",
+  delete1:"https://lh3.googleusercontent.com/d/1SaI02DWaR1AllbNffyOCActLCVhLtQP1",
+  delete2:"https://lh3.googleusercontent.com/d/168zHIMix3PYfimM-dcZ4j33Pv3Fx0xZA"
+};
 
+var SECS=[{num:"1",ttl:"장비 구성"},{num:"2",ttl:"촬영 준비"},{num:"3",ttl:"촬영 후 필터 변경"},{num:"4",ttl:"사진 내보내기"},{num:"5",ttl:"사진 인화"},{num:"6",ttl:"원본 챙기기"}];
+
+function showTab(btn,id){document.querySelectorAll(".page").forEach(function(p){p.classList.remove("active");});document.querySelectorAll(".nbtn").forEach(function(b){b.classList.remove("active");});document.getElementById(id).classList.add("active");btn.classList.add("active");}
+function goSec(i){var s=SECS[i];var tpl=document.getElementById("tpl-"+i);var body=document.getElementById("sec-body");body.innerHTML=tpl.innerHTML;body.querySelectorAll("img[data-key]").forEach(function(img){var k=img.getAttribute("data-key");if(srcMap[k])img.src=srcMap[k];});document.getElementById("sec-num").textContent=s.num;document.getElementById("sec-ttl").textContent=s.ttl;document.getElementById("midx").style.display="none";document.getElementById("msec").style.display="";window.scrollTo(0,0);}
+function backIdx(){document.getElementById("midx").style.display="";document.getElementById("msec").style.display="none";}
+</script>
 </body>
 </html>
