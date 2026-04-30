@@ -635,9 +635,12 @@ textarea { resize: none; }
 
   <!-- 완료 화면 -->
   <div id="ret-done" class="done" style="display:none;">
-    <div class="done-ic">&#10003;</div>
-    <h3>신청이 완료되었습니다!</h3>
-    <p style="color:var(--mu);font-size:14px;line-height:1.8;">아래 버튼을 눌러 사진과 함께 이메일을 보내주세요.</p>
+    <div class="done-ic" style="background:var(--or-light);border:2px solid var(--or);">&#128203;</div>
+    <h3 style="color:var(--or);">신청이 접수되었습니다!</h3>
+    <div style="background:#FFF8E8;border:1.5px solid var(--or);border-radius:var(--r);padding:14px 16px;margin-top:1rem;text-align:left;">
+      <div style="font-size:15px;font-weight:700;color:var(--or);margin-bottom:6px;">&#9888;&#65039; 아직 보정이 시작되지 않았어요!</div>
+      <div style="font-size:14px;color:#8A5A10;line-height:1.8;">아래 버튼을 눌러 <b style="color:#8A5A10;">사진을 전송해야</b> 보정이 시작됩니다.</div>
+    </div>
 
     <!-- 유료: 입금 안내 -->
     <div id="done-paid-notice" style="display:none;background:var(--t-light);border:1.5px solid var(--t);border-radius:var(--r);padding:14px 16px;margin-top:1.25rem;text-align:left;">
@@ -662,11 +665,13 @@ textarea { resize: none; }
 
     <!-- 이메일 전송 버튼 -->
     <a id="mailto-btn" href="#" target="_top"
-      style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:1rem;padding:14px;background:var(--t);color:white;border-radius:var(--r);font-size:15px;font-weight:700;text-decoration:none;">
-      &#128231; 이메일로 사진 보내기
+      style="display:flex;align-items:center;justify-content:center;gap:10px;margin-top:1rem;padding:18px;background:var(--or);color:white;border-radius:var(--r);font-size:17px;font-weight:700;text-decoration:none;box-shadow:0 4px 12px rgba(232,150,42,0.4);">
+      &#128247; 지금 바로 사진 보내기
     </a>
-    <p style="font-size:12px;color:var(--mu);text-align:center;margin-top:8px;line-height:1.6;">
-      버튼을 누르면 이메일 앱이 열립니다<br>양식에 <b style="color:var(--or);">고화질 원본 사진</b>을 첨부해주세요
+    <p style="font-size:13px;color:var(--mu);text-align:center;margin-top:10px;line-height:1.7;">
+      버튼을 누르면 이메일 앱이 열려요<br>
+      사진을 첨부하고 전송하면 보정이 시작됩니다!<br>
+      <b style="color:var(--or);">고화질 원본 사진</b>으로 보내주세요
     </p>
 
     <button class="rbtn" style="margin-top:1rem;" onclick="resetR()">다시 신청하기</button>
