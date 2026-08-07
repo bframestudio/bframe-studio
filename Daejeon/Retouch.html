@@ -1,1 +1,785 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>B:FRAME STUDIO — 보정 신청</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+:root {
+  --t: #4A7F7F;
+  --t-light: #E8F3F3;
+  --t-mid: rgba(74,127,127,0.25);
+  --or: #E8962A;
+  --or-light: #FFF4E0;
+  --bg: #F4F8F8;
+  --bd: rgba(74,127,127,0.15);
+  --mu: #6B8080;
+  --tx: #1A2A2A;
+  --white: #ffffff;
+  --r: 14px;
+  --rs: 8px;
+  --shadow: 0 2px 12px rgba(74,127,127,0.08);
+  --shadow-hover: 0 4px 20px rgba(74,127,127,0.15);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Noto Sans KR", -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--tx);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── NAV ── */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1.25rem;
+  background: var(--white);
+  border-bottom: 1px solid var(--bd);
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  box-shadow: 0 1px 8px rgba(74,127,127,0.06);
+}
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo-icon {
+  width: 32px; height: 32px;
+  border: 2px solid var(--t);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+}
+.logo-text { font-size: 16px; font-weight: 700; color: var(--tx); letter-spacing: -0.3px; }
+.logo-text span { color: var(--t); }
+.nav-tabs { display: flex; gap: 6px; }
+.nbtn {
+  background: none;
+  border: none;
+  padding: 7px 16px;
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--mu);
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+.nbtn.active { background: var(--t); color: white; }
+.nbtn:not(.active):hover { background: var(--t-light); color: var(--t); }
+
+/* ── PAGE ── */
+.page { display: none; max-width: 700px; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
+.page.active { display: block; }
+
+/* ── PAGE HEADER ── */
+.ph { text-align: center; padding: 1.75rem 0 1.5rem; }
+.ph h2 { font-size: 26px; font-weight: 700; color: var(--tx); margin-bottom: 6px; letter-spacing: -0.5px; }
+.ph p { font-size: 14px; color: var(--mu); }
+
+/* ── 이용순서 모식도 ── */
+.flow-box {
+  background: var(--white);
+  border: 1.5px solid var(--bd);
+  border-radius: var(--r);
+  padding: 1.25rem 1rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow);
+}
+.flow-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  flex-wrap: nowrap;
+}
+.flow-item { text-align: center; flex-shrink: 0; }
+.flow-title { font-size: 15px; font-weight: 700; color: var(--tx); }
+.flow-time { font-size: 12px; color: var(--or); font-weight: 600; margin-top: 2px; }
+.flow-arrow { color: var(--t); font-size: 20px; margin: 0 12px; flex-shrink: 0; }
+
+/* ── INDEX 목록 ── */
+.idx { display: flex; flex-direction: column; }
+.irow {
+  background: var(--white);
+  border: 1.5px solid var(--bd);
+  border-radius: var(--r);
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow);
+}
+.irow:hover { border-color: var(--t); background: var(--t-light); transform: translateY(-1px); box-shadow: var(--shadow-hover); }
+.irow.nc { cursor: default; }
+.irow.nc:hover { border-color: var(--bd); background: var(--white); transform: none; box-shadow: var(--shadow); }
+.il { display: flex; align-items: center; gap: 14px; }
+.inum {
+  width: 38px; height: 38px;
+  background: var(--t);
+  color: white;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; font-weight: 700;
+  flex-shrink: 0;
+}
+.inum.dim { background: #B0CECE; }
+.ittl { font-size: 16px; font-weight: 700; color: var(--tx); display: flex; align-items: center; gap: 8px; }
+.isub { font-size: 13px; color: var(--mu); margin-top: 2px; }
+.opt {
+  font-size: 11px; color: var(--or);
+  background: var(--or-light);
+  padding: 2px 9px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+.arr { text-align: center; color: var(--t); font-size: 18px; padding: 4px 0; }
+.chev { color: var(--t); font-size: 22px; font-weight: 300; }
+
+/* ── 섹션 헤더 ── */
+.shd {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1.5px solid var(--bd);
+}
+.back {
+  background: var(--white);
+  border: 1.5px solid var(--bd);
+  border-radius: 24px;
+  padding: 7px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--mu);
+  font-family: inherit;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.back:hover { background: var(--t-light); border-color: var(--t); color: var(--t); }
+.snum {
+  width: 32px; height: 32px;
+  background: var(--t);
+  color: white;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 700;
+  flex-shrink: 0;
+}
+.sttl { font-size: 20px; font-weight: 700; color: var(--tx); letter-spacing: -0.3px; }
+
+/* ── 스텝 카드 ── */
+.step {
+  background: var(--white);
+  border: 1px solid var(--bd);
+  border-radius: var(--r);
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow);
+}
+.shd2 { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 10px; }
+.sn {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: var(--t-light);
+  color: var(--t);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.st { font-size: 17px; font-weight: 700; color: var(--tx); line-height: 1.4; padding-top: 4px; }
+.sb { padding-left: 42px; }
+
+/* ── 본문 텍스트 ── */
+.desc {
+  font-size: 15px;
+  color: #4A5A5A;
+  line-height: 1.9;
+  margin-bottom: 6px;
+}
+.tip {
+  background: var(--t-light);
+  border-left: 3px solid var(--t);
+  border-radius: 0 var(--rs) var(--rs) 0;
+  padding: 12px 16px;
+  margin-top: 10px;
+  font-size: 15px;
+  color: var(--t);
+  line-height: 1.8;
+}
+.warn {
+  background: #FFF8E8;
+  border-left: 3px solid var(--or);
+  border-radius: 0 var(--rs) var(--rs) 0;
+  padding: 12px 16px;
+  margin-top: 10px;
+  font-size: 15px;
+  color: #8A5A10;
+  line-height: 1.8;
+}
+.rinfo {
+  background: var(--t-light);
+  border-radius: var(--rs);
+  padding: 12px 16px;
+  margin-top: 10px;
+  font-size: 15px;
+  line-height: 2;
+}
+.si {
+  width: 100%;
+  border-radius: var(--rs);
+  border: 1px solid var(--bd);
+  display: block;
+  margin-top: 12px;
+}
+
+/* ── 인화지 수량 박스 ── */
+.paper-box {
+  margin-top: 14px;
+  background: var(--t-light);
+  border-radius: var(--r);
+  padding: 14px 16px;
+}
+.paper-box-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--t);
+  margin-bottom: 10px;
+}
+.paper-tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+.paper-tbl th {
+  padding: 8px 10px;
+  text-align: left;
+  color: var(--tx);
+  font-weight: 700;
+  border-bottom: 1.5px solid var(--t-mid);
+}
+.paper-tbl td {
+  padding: 8px 10px;
+  color: var(--tx);
+  border-bottom: 0.5px solid var(--t-mid);
+}
+.paper-tbl tr:last-child td { border-bottom: none; }
+
+/* ── 하단 돌아가기 버튼 ── */
+.back-bottom {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  border-radius: var(--r);
+  border: 1.5px solid var(--t);
+  background: var(--white);
+  color: var(--t);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  margin-top: 2rem;
+  transition: all 0.2s;
+}
+.back-bottom:hover { background: var(--t-light); }
+
+/* ── 보정 신청 ── */
+.pgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1.5rem; }
+.pc {
+  border: 1.5px solid var(--bd);
+  border-radius: var(--r);
+  padding: 1.25rem;
+  cursor: pointer;
+  background: var(--white);
+  transition: all 0.2s;
+  box-shadow: var(--shadow);
+}
+.pc.sel { border-color: var(--t); background: var(--t-light); }
+.pc:hover { border-color: var(--t); transform: translateY(-1px); box-shadow: var(--shadow-hover); }
+.pb { display: inline-block; padding: 3px 10px; border-radius: 10px; font-size: 12px; font-weight: 700; margin-bottom: 8px; }
+.pbf { background: #EAF3DE; color: #3B6D11; }
+.pbp { background: var(--t-light); color: var(--t); }
+.ptl { font-size: 16px; font-weight: 700; color: var(--tx); margin-bottom: 4px; }
+.pds { font-size: 13px; color: var(--mu); line-height: 1.6; }
+.fsec {
+  background: var(--white);
+  border: 1px solid var(--bd);
+  border-radius: var(--r);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow);
+}
+.ftl {
+  font-size: 15px; font-weight: 700; color: var(--tx);
+  margin-bottom: 1rem;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--bd);
+}
+.frow { margin-bottom: 1rem; }
+.frow:last-child { margin-bottom: 0; }
+label { display: block; font-size: 13px; font-weight: 600; color: var(--tx); margin-bottom: 6px; }
+input, select, textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid var(--bd);
+  border-radius: var(--rs);
+  font-size: 15px;
+  background: var(--bg);
+  color: var(--tx);
+  outline: none;
+  font-family: inherit;
+  transition: border 0.2s;
+}
+input:focus, textarea:focus, select:focus { border-color: var(--t); }
+textarea { resize: none; }
+.pi {
+  background: var(--t-light);
+  border-radius: var(--rs);
+  padding: 12px 14px;
+  margin-bottom: 1rem;
+  font-size: 15px;
+  color: var(--t);
+  line-height: 1.8;
+}
+.cr { display: flex; align-items: center; gap: 14px; }
+.cb {
+  border-radius: 50%;
+  border: 1.5px solid var(--bd);
+  background: var(--white);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--tx);
+  font-family: inherit;
+  transition: all 0.2s;
+  font-size: 18px;
+}
+.cb:hover { background: var(--t-light); border-color: var(--t); color: var(--t); }
+.cv { font-size: 22px; font-weight: 700; color: var(--tx); min-width: 36px; text-align: center; }
+.cu { font-size: 14px; color: var(--mu); }
+.er {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-top: 1px solid var(--bd);
+  margin-top: 14px;
+}
+.pbox { background: var(--bg); border-radius: var(--r); padding: 1.25rem; margin-top: 1rem; border: 1px solid var(--bd); }
+.prow { display: flex; justify-content: space-between; font-size: 14px; padding: 5px 0; }
+.prow .pl { color: var(--mu); }
+.pdiv { border: none; border-top: 1px solid var(--bd); margin: 10px 0; }
+.ptot { display: flex; justify-content: space-between; align-items: center; }
+.ptot .tl { font-size: 16px; font-weight: 700; }
+.ptot .tv { font-size: 24px; font-weight: 700; color: var(--t); }
+.kbtn {
+  width: 100%; padding: 15px;
+  border-radius: var(--r);
+  border: none;
+  background: #FEE500;
+  color: #3C1E1E;
+  font-size: 16px; font-weight: 700;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  font-family: inherit;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(254,229,0,0.4);
+}
+.kbtn:hover { background: #F5DC00; transform: translateY(-1px); }
+.knote { font-size: 13px; color: var(--mu); text-align: center; margin-top: 10px; line-height: 1.6; }
+.sbtn {
+  width: 100%; padding: 15px;
+  border-radius: var(--r);
+  border: none;
+  background: var(--t);
+  color: white;
+  font-size: 16px; font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(74,127,127,0.3);
+}
+.sbtn:hover { background: #3A6666; transform: translateY(-1px); }
+.pa {
+  display: flex; justify-content: space-between; align-items: center;
+  background: var(--bg);
+  border-radius: var(--rs);
+  padding: 14px 16px;
+  margin-bottom: 14px;
+  border: 1px solid var(--bd);
+}
+.pa span:first-child { font-size: 15px; color: var(--tx); font-weight: 500; }
+.pa span:last-child { font-size: 22px; font-weight: 700; color: var(--t); }
+.done { text-align: center; padding: 4rem 1rem; }
+.done-ic {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: var(--t-light);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1.5rem;
+  font-size: 32px;
+  border: 2px solid var(--t);
+}
+.done h3 { font-size: 22px; font-weight: 700; color: var(--tx); margin-bottom: 10px; }
+.done p { color: var(--mu); font-size: 15px; line-height: 1.8; }
+.rbtn {
+  margin-top: 1.5rem;
+  background: var(--t);
+  color: white;
+  border: none;
+  border-radius: 24px;
+  padding: 12px 28px;
+  font-size: 15px;
+  cursor: pointer;
+  font-weight: 700;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+.rbtn:hover { background: #3A6666; }
+
+/* ── 반응형 ── */
+@media (max-width: 480px) {
+  nav { padding: 0.75rem 1rem; }
+  .page { padding: 1rem 0.75rem 3rem; }
+  .ph h2 { font-size: 22px; }
+  .sttl { font-size: 18px; }
+  .pgrid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .pc { padding: 1rem; }
+  .flow-arrow { margin: 0 8px; font-size: 16px; }
+  .flow-title { font-size: 13px; }
+  .nbtn { padding: 6px 12px; font-size: 13px; }
+  .step { padding: 1rem; }
+  .sb { padding-left: 36px; }
+}
+@media (max-width: 360px) {
+  .pgrid { grid-template-columns: 1fr; }
+  .flow-inner { gap: 4px; }
+  .flow-arrow { margin: 0 4px; }
+}
+</style>
+<style>nav a.nbtn{text-decoration:none;display:inline-block;}.logo-text span{color:var(--tx);}</style>
+</head>
+<body>
+<nav>
+  <div class="logo"><div class="logo-icon">&#128247;</div><div class="logo-text">B:<span>FRAME</span> STUDIO</div></div>
+  <div class="nav-tabs">
+    <a href="Notice.html" target="_top" class="nbtn" style="text-decoration:none;">이용 안내</a>
+    <a href="Manual.html" target="_top" class="nbtn" style="text-decoration:none;">촬영 안내</a>
+    <a href="Retouch.html" target="_top" class="nbtn active" style="text-decoration:none;">보정 신청</a>
+  </div>
+</nav>
+<div style="max-width:660px;margin:0 auto;padding:1.25rem 1.1rem 3rem;">
+  <div id="ret-main">
+    <div class="ph"><h2>인물 보정 신청</h2><p>촬영 후 원하는 보정 플랜을 선택해 주세요</p></div>
+
+    <!-- 플랜 선택 -->
+    <div style="display:flex;justify-content:center;gap:12px;margin-bottom:1.25rem;">
+      <div class="pc" id="cf" onclick="setPlan('free')" style="text-align:center;width:calc(50% - 6px);max-width:300px;">
+        <div class="ptl"><b style="color:var(--t)">무료</b> 보정</div>
+      </div>
+      <div class="pc" id="cp" onclick="setPlan('paid')" style="text-align:center;width:calc(50% - 6px);max-width:300px;">
+        <div class="ptl"><b style="color:var(--or)">유료</b> 보정</div>
+      </div>
+    </div>
+
+    <!-- 무료 홍보물 동의 -->
+    <div id="free-notice" class="fsec" style="display:none;border-color:var(--or);background:var(--or-light);">
+      <div style="display:flex;align-items:flex-start;gap:10px;">
+        <span style="font-size:20px;flex-shrink:0;">&#128227;</span>
+        <div>
+          <div style="font-size:15px;font-weight:700;color:var(--or);margin-bottom:6px;">홍보물 활용 동의 안내</div>
+          <div style="font-size:14px;color:#8A5A10;line-height:1.9;">
+            무료 보정 신청 시, 보정된 사진이 스튜디오 홍보물(SNS, 웹사이트 등)에 활용될 수 있습니다.<br>
+            동의하지 않으시면 유료 보정을 이용해 주세요.
+            <div style="margin-top:10px;display:flex;flex-direction:column;gap:4px;font-size:13px;">
+              <div>&#127807; 6인 이하만 해당</div>
+              <div>&#127807; 무료 보정 <b style="color:#8A5A10;">2장</b> 제공</div>
+              <div>&#127807; 레터링 문구 추가 무료</div>
+              <div>&#127807; 보정본 인화 불가능</div>
+            </div>
+          </div>
+          <label style="display:flex;align-items:center;gap:8px;margin-top:12px;cursor:pointer;font-size:14px;font-weight:600;color:var(--or);">
+            <input type="checkbox" id="agree-check" style="width:18px;height:18px;accent-color:var(--or);margin:0;" onchange="checkAgree()">
+            홍보물 활용에 동의합니다
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- 유료 안내 -->
+    <div id="paid-notice" class="fsec" style="display:none;border-color:var(--or);background:var(--or-light);">
+      <div style="display:flex;align-items:flex-start;gap:10px;">
+        <span style="font-size:20px;flex-shrink:0;">&#128176;</span>
+        <div>
+          <div style="font-size:15px;font-weight:700;color:var(--or);margin-bottom:10px;">&#9888;&#65039; 입금계좌 안내</div>
+          <div style="font-size:14px;color:#8A5A10;line-height:1.9;display:flex;flex-direction:column;gap:4px;">
+            <div>&#127807; 입금 확인 후 보정 작업이 시작됩니다</div>
+            <div>&#127807; 1장당 <b style="color:#8A5A10;">5,000원</b> (2인 기준)</div>
+            <div>&#127807; 추가 인원 1인당 <b style="color:#8A5A10;">+3,000원/장</b></div>
+            <div>&#127807; 레터링 문구 추가 무료</div>
+            <div>&#127807; 보정본 인화 불가능</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 신청자 정보 -->
+    <div class="fsec" id="common-sec" style="display:none;">
+      <div class="ftl">신청자 정보 <span style="font-size:12px;color:var(--or);font-weight:400;">* 필수 입력</span></div>
+      <div class="frow">
+        <label>예약자 성함 <span style="color:var(--or);">*</span></label>
+        <input type="text" id="inp-name" placeholder="예: 홍길동">
+      </div>
+      <div class="frow">
+        <label>연락처 <span style="color:var(--or);">*</span></label>
+        <input type="tel" id="inp-phone" placeholder="010-0000-0000">
+      </div>
+    </div>
+
+    <!-- 이메일 안내 -->
+    <div class="fsec" id="email-guide" style="display:none;border-color:var(--t);background:var(--t-light);">
+      <div style="display:flex;align-items:flex-start;gap:10px;">
+        <span style="font-size:22px;flex-shrink:0;">&#128247;</span>
+        <div>
+          <div style="font-size:15px;font-weight:700;color:var(--t);margin-bottom:8px;">보정할 사진 전송 안내</div>
+          <div style="font-size:14px;color:var(--t);line-height:1.9;">
+            신청 완료 후, 보정할 사진을 아래 이메일로 보내주세요.<br>
+            <span style="display:inline-block;margin-top:8px;font-size:16px;font-weight:700;color:var(--or);">bframe_studio@naver.com</span>
+            <div style="margin-top:10px;font-size:13px;color:var(--t);line-height:1.9;">
+              &#183; <b style="color:var(--t);">고화질 원본 사진</b>으로 보내주세요<br>
+              &#183; 이메일 제목에 <b style="color:var(--t);">예약자 성함</b>을 적어주세요
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 유료: 보정 견적 -->
+    <div id="paid-x" style="display:none;">
+      <div class="fsec">
+        <div class="ftl">보정 견적 내역</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--bd);">
+          <div>
+            <div style="font-size:15px;font-weight:600;color:var(--tx);">보정할 사진 장수</div>
+            <div style="font-size:13px;color:var(--mu);margin-top:2px;">기본 2인 기준</div>
+          </div>
+          <div class="cr">
+            <button class="cb" style="width:34px;height:34px;font-size:20px;" onclick="chP(-1)">&#8722;</button>
+            <span class="cv" id="pv">1</span><span class="cu">장</span>
+            <button class="cb" style="width:34px;height:34px;font-size:20px;" onclick="chP(1)">+</button>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 0;">
+          <div>
+            <div style="font-size:15px;font-weight:600;color:var(--tx);">추가 인원</div>
+            <div style="font-size:13px;color:var(--mu);margin-top:2px;">3인부터 추가 인원 선택</div>
+          </div>
+          <div class="cr">
+            <button class="cb" style="width:34px;height:34px;font-size:20px;" onclick="chE(-1)">&#8722;</button>
+            <span class="cv" id="ev">0</span><span class="cu">명</span>
+            <button class="cb" style="width:34px;height:34px;font-size:20px;" onclick="chE(1)">+</button>
+          </div>
+        </div>
+        <div class="pbox">
+          <div class="prow"><span class="pl" id="bl">기본 (1장 x 5,000원)</span><span id="bp">5,000원</span></div>
+          <div class="prow" id="ep-row" style="display:none;"><span class="pl" id="el">추가</span><span id="ep">0원</span></div>
+          <hr class="pdiv">
+          <div class="ptot"><span class="tl">최종 결제 금액</span><span class="tv" id="tp">5,000원</span></div>
+        </div>
+      </div>
+
+      <!-- 결제 -->
+      <div id="payment-sec" class="fsec" style="display:none;">
+        <div class="ftl">결제</div>
+        <div class="pa"><span>결제 금액</span><span id="pay-tp">5,000원</span></div>
+        <div style="background:var(--t-light);border-radius:var(--r);padding:14px 16px;margin-bottom:10px;">
+          <div style="font-size:13px;color:var(--mu);margin-bottom:6px;">입금 계좌</div>
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+            <span style="font-size:16px;font-weight:700;color:var(--tx);">카카오뱅크 3333-34-8325017</span>
+            <button onclick="copyAccount(this)" style="background:var(--t);color:white;border:none;border-radius:6px;padding:4px 10px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;">복사</button>
+          </div>
+          <div style="font-size:13px;color:var(--mu);margin-top:4px;">입금자명에 <b style="color:var(--or);">예약자 성함</b>을 적어주세요</div>
+        </div>
+        <div style="background:#FFF8E8;border-left:3px solid var(--or);border-radius:0 var(--rs) var(--rs) 0;padding:10px 14px;font-size:13px;color:#8A5A10;line-height:1.8;">
+          &#9888;&#65039; 입금 확인 후 보정 작업이 진행됩니다.
+        </div>
+      </div>
+    </div>
+
+    <!-- 요청 사항 -->
+    <div class="fsec" id="request-sec" style="display:none;">
+      <div class="ftl">요청 사항 <span style="font-size:13px;color:var(--mu);font-weight:400;">(선택)</span></div>
+      <textarea rows="3" placeholder="예) 피부 잡티 제거 / 머리숱 보강 / 얼굴·팔다리 라인 슬림하게 / 팔뚝·복부 라인 정리 / 턱선 갸름하게 등"></textarea>
+    </div>
+
+    <!-- 보정 완료 안내 -->
+    <div id="info-sec" style="display:none;background:var(--t-light);border-radius:var(--r);padding:14px 16px;margin-bottom:1rem;border:1px solid var(--bd);">
+      <div style="font-size:14px;color:var(--t);line-height:1.9;">
+        &#128231; 보정 완료된 사진은 <b style="color:var(--or);">사진 보내신 이메일</b>로 회신됩니다.<br>
+        &#8986;&#65039; 보정 기간은 사진 수신일로부터 <b style="color:var(--or);">약 3일</b> 소요됩니다.
+      </div>
+    </div>
+
+    <button class="sbtn" id="sub-btn" style="display:none;" onclick="submitR()">보정 신청하기</button>
+  </div>
+
+  <!-- 완료 화면 -->
+  <div id="ret-done" class="done" style="display:none;">
+    <div class="done-ic" style="background:var(--or-light);border:2px solid var(--or);">&#128203;</div>
+    <h3 style="color:var(--or);">신청이 접수되었습니다!</h3>
+    <div style="background:#FFF8E8;border:1.5px solid var(--or);border-radius:var(--r);padding:14px 16px;margin-top:1rem;text-align:left;">
+      <div style="font-size:15px;font-weight:700;color:var(--or);margin-bottom:6px;">&#9888;&#65039; 아직 보정이 시작되지 않았어요!</div>
+      <div style="font-size:14px;color:#8A5A10;line-height:1.8;">아래 버튼을 눌러 <b style="color:#8A5A10;">사진을 전송해야</b> 보정이 시작됩니다.</div>
+    </div>
+
+    <!-- 유료: 입금 안내 -->
+    <div id="done-paid-notice" style="display:none;background:var(--t-light);border:1.5px solid var(--t);border-radius:var(--r);padding:14px 16px;margin-top:1.25rem;text-align:left;">
+      <div style="font-size:15px;font-weight:700;color:var(--t);margin-bottom:10px;">입금계좌 안내</div>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+        <span style="font-size:16px;font-weight:700;color:var(--tx);">카카오뱅크 3333-34-8325017</span>
+        <button onclick="copyAccount(this)" style="background:var(--t);color:white;border:none;border-radius:6px;padding:4px 10px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;">복사</button>
+      </div>
+      <div style="font-size:14px;color:var(--mu);margin-top:4px;">예금주: <b style="color:var(--tx);">배한경</b></div>
+      <div style="font-size:13px;color:var(--mu);margin-top:4px;">입금자명에 <b style="color:var(--or);">예약자 성함</b>을 적어주세요</div>
+      <div style="background:#FFF8E8;border-left:3px solid var(--or);border-radius:0 var(--rs) var(--rs) 0;padding:10px 14px;font-size:13px;color:#8A5A10;line-height:1.8;margin-top:10px;">
+        &#9888;&#65039; 입금 확인 후 보정 작업이 진행됩니다.
+      </div>
+    </div>
+
+    <!-- 이메일 양식 미리보기 -->
+    <div style="background:var(--bg);border:1px solid var(--bd);border-radius:var(--r);padding:16px;margin-top:1rem;text-align:left;">
+      <div style="font-size:13px;font-weight:700;color:var(--mu);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--bd);">&#128231; 이메일 양식 미리보기</div>
+      <div style="font-size:13px;color:var(--mu);margin-bottom:6px;">받는 사람: <b style="color:var(--or);">bframe_studio@naver.com</b></div>
+      <div style="font-size:13px;color:var(--tx);line-height:1.9;background:white;border-radius:var(--rs);padding:12px;border:1px solid var(--bd);white-space:pre-line;" id="email-preview"></div>
+    </div>
+
+    <!-- 이메일 전송 버튼 -->
+    <a id="mailto-btn" href="#" target="_top"
+      style="display:flex;align-items:center;justify-content:center;gap:10px;margin-top:1rem;padding:18px;background:var(--or);color:white;border-radius:var(--r);font-size:17px;font-weight:700;text-decoration:none;box-shadow:0 4px 12px rgba(232,150,42,0.4);">
+      &#128247; 지금 바로 사진 보내기
+    </a>
+    <p style="font-size:13px;color:var(--mu);text-align:center;margin-top:10px;line-height:1.7;">
+      버튼을 누르면 이메일 앱이 열려요<br>
+      사진을 첨부하고 전송하면 보정이 시작됩니다!<br>
+      <b style="color:var(--or);">고화질 원본 사진</b>으로 보내주세요
+    </p>
+
+    <button class="rbtn" style="margin-top:1rem;" onclick="resetR()">다시 신청하기</button>
+  </div>
+</div>
+<script>
+var plan="", ph=1, ex=0;
+
+function setPlan(p) {
+  plan = p;
+  document.getElementById("cf").classList.toggle("sel", p==="free");
+  document.getElementById("cp").classList.toggle("sel", p==="paid");
+  document.getElementById("free-notice").style.display = p==="free" ? "" : "none";
+  document.getElementById("paid-notice").style.display = p==="paid" ? "" : "none";
+  document.getElementById("paid-x").style.display = p==="paid" ? "" : "none";
+  document.getElementById("payment-sec").style.display = p==="paid" ? "" : "none";
+  document.getElementById("common-sec").style.display = "";
+  document.getElementById("email-guide").style.display = "";
+  document.getElementById("request-sec").style.display = "";
+  document.getElementById("info-sec").style.display = "";
+  document.getElementById("sub-btn").style.display = "";
+  document.getElementById("sub-btn").textContent = "보정 신청하기";
+  checkAgree();
+}
+function checkAgree() {
+  var agreed = plan!=="free" || (document.getElementById("agree-check") && document.getElementById("agree-check").checked);
+  var btn = document.getElementById("sub-btn");
+  if (btn) { btn.disabled=!agreed; btn.style.opacity=agreed?"1":"0.5"; }
+}
+function calc() {
+  var b=ph*5000, e=ex*ph*3000, t=b+e;
+  document.getElementById("pv").textContent=ph;
+  document.getElementById("ev").textContent=ex;
+  document.getElementById("bl").textContent="기본 ("+ph+"장 x 5,000원)";
+  document.getElementById("bp").textContent=b.toLocaleString()+"원";
+  document.getElementById("ep-row").style.display=ex>0?"":"none";
+  document.getElementById("el").textContent="추가 ("+ex+"명 x "+ph+"장 x 3,000원)";
+  document.getElementById("ep").textContent=e.toLocaleString()+"원";
+  document.getElementById("tp").textContent=t.toLocaleString()+"원";
+  document.getElementById("pay-tp").textContent=t.toLocaleString()+"원";
+}
+function chP(d){ph=Math.max(1,ph+d);calc();}
+function chE(d){ex=Math.max(0,ex+d);calc();}
+function submitR() {
+  var name = document.getElementById("inp-name").value.trim();
+  var phone = document.getElementById("inp-phone").value.trim();
+  if (!name) { alert("예약자 성함을 입력해주세요."); document.getElementById("inp-name").focus(); return; }
+  if (!phone) { alert("연락처를 입력해주세요."); document.getElementById("inp-phone").focus(); return; }
+  if (plan==="free" && !(document.getElementById("agree-check") && document.getElementById("agree-check").checked)) {
+    alert("홍보물 활용 동의에 체크해주세요."); return;
+  }
+  // 완료 처리
+  var name = document.getElementById("inp-name").value.trim();
+  var phone = document.getElementById("inp-phone").value.trim();
+  var planText = plan==="free" ? "무료 보정" : "유료 보정";
+  var reqEl = document.querySelector("textarea");
+  var req = reqEl ? reqEl.value.trim() : "";
+
+  var paidNotice = document.getElementById("done-paid-notice");
+  if (paidNotice) paidNotice.style.display = plan==="paid" ? "" : "none";
+
+  var subject = encodeURIComponent("[보정신청] " + name + " (" + planText + ")");
+  var bodyText =
+    "[보정 신청 양식]\n\n" +
+    "■ 예약자 성함: " + name + "\n" +
+    "■ 연락처: " + phone + "\n" +
+    "■ 보정 플랜: " + planText + "\n" +
+    (plan==="paid" ? "■ 보정 장수: " + ph + "장\n" : "") +
+    (plan==="paid" ? "■ 결제금액: " + (ph*5000+ex*ph*3000).toLocaleString() + "원\n" : "") +
+    "■ 요청사항: " + (req || "없음") + "\n\n" +
+    "※ 이 이메일에 보정할 사진(고화질 원본)을 첨부해주세요.";
+
+  document.getElementById("mailto-btn").href = "mailto:bframe_studio@naver.com?subject=" + subject + "&body=" + encodeURIComponent(bodyText);
+  document.getElementById("email-preview").textContent = bodyText;
+  document.getElementById("ret-main").style.display="none";
+  document.getElementById("ret-done").style.display="";
+}
+function resetR() {
+  plan=""; ph=1; ex=0;
+  ["common-sec","email-guide","request-sec","info-sec","sub-btn","free-notice","paid-notice","paid-x","payment-sec"].forEach(function(id){
+    var el=document.getElementById(id); if(el) el.style.display="none";
+  });
+  document.getElementById("cf").classList.remove("sel");
+  document.getElementById("cp").classList.remove("sel");
+  document.getElementById("ret-main").style.display="";
+  document.getElementById("ret-done").style.display="none";
+  calc();
+}
+
+function copyAccount(btn) {
+  var account = "3333-34-8325017";
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(account).then(function() {
+      btn.textContent = "복사됨!";
+      setTimeout(function(){ btn.textContent = "복사"; }, 2000);
+    });
+  } else {
+    // 구형 브라우저 fallback
+    var el = document.createElement("textarea");
+    el.value = account;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand("copy");
+    document.body.removeChild(el);
+    btn.textContent = "복사됨!";
+    setTimeout(function(){ btn.textContent = "복사"; }, 2000);
+  }
+}
+</script>
+</body>
+</html>
