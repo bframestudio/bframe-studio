@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>B:FRAME STUDIO — 촬영 안내 (옥정셀프점)</title>
+<title>B:FRAME STUDIO — 촬영 안내</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -473,9 +473,9 @@ textarea { resize: none; }
 <nav>
   <div class="logo"><div class="logo-icon">&#128247;</div><div class="logo-text">B:<span>FRAME</span> STUDIO</div></div>
   <div class="nav-tabs">
-    <a href="Okjeong_Notice.html" target="_top" class="nbtn" style="text-decoration:none;">이용 안내</a>
-    <a href="Okjeong_Manual.html" target="_top" class="nbtn active" style="text-decoration:none;">촬영 안내</a>
-    <a href="Okjeong_Retouch.html" target="_top" class="nbtn" style="text-decoration:none;">보정 신청</a>
+    <a href="Notice.html" target="_top" class="nbtn" style="text-decoration:none;">이용 안내</a>
+    <a href="Manual.html" target="_top" class="nbtn active" style="text-decoration:none;">촬영 안내</a>
+    <a href="Retouch.html" target="_top" class="nbtn" style="text-decoration:none;">보정 신청</a>
   </div>
 </nav>
 <div style="display:block;padding:0;">
@@ -546,8 +546,7 @@ textarea { resize: none; }
     <div class="step"><div class="shd2"><div class="sn">1</div><div class="st">라이트룸 실행</div></div>
       <div class="sb"><p class="desc">바탕화면에서 라이트룸(LrC)을 실행시켜 주세요.</p>
         <img class="si" data-key="lr_run" alt="라이트룸 실행">
-        <div style="margin-top:8px"><div class="warn">&#9888;&#65039; 컴퓨터가 꺼져 있다면 컴퓨터를 먼저 켠 후 라이트룸을 실행하세요.</div>
-        <img class="si" data-key="power" alt="컴퓨터 전원"></div></div></div>
+        <div class="warn">&#9888;&#65039; 컴퓨터가 꺼져 있다면 컴퓨터를 먼저 켠 후 라이트룸을 실행하세요.</div></div></div>
     <div class="step"><div class="shd2"><div class="sn">2</div><div class="st">연결전송된 촬영 시작</div></div>
       <div class="sb"><p class="desc">상단 <b style="color:var(--or)">파일</b> 탭 &#8594; <b style="color:var(--or)">연결전송된 촬영</b> &#8594; <b style="color:var(--or)">연결전송된 촬영 시작</b> 클릭!</p>
         <img class="si" data-key="tethered" alt="파일 메뉴"></div></div>
@@ -581,13 +580,16 @@ textarea { resize: none; }
     <button class="back-bottom" onclick="backIdx()">&#8592; 목록으로 돌아가기</button>
   </div>
   <div id="tpl-2" style="display:none;">
-    <div class="step"><div class="shd2"><div class="sn">1</div><div class="st">필터 변경할 사진 선택</div></div>
+    <div class="step"><div class="shd2"><div class="sn">1</div><div class="st">현상탭으로 이동</div></div>
+      <div class="sb"><p class="desc">우측 상단의 <b style="color:var(--or)">현상</b> (또는 <b style="color:var(--or)">D</b>)를 눌러 현상탭으로 이동하세요. <b style="color:var(--or)">F7</b>을 눌러 왼쪽 패널(사전설정 목록)을 열어주세요.</p>
+        <img class="si" data-key="dev_tab" alt="현상탭으로 이동"></div></div>
+    <div class="step"><div class="shd2"><div class="sn">2</div><div class="st">필터 변경할 사진 선택</div></div>
       <div class="sb"><p class="desc">화면 하단에 뜬 촬영사진 중 필터 변경을 원하는 사진을 선택한 뒤, <b style="color:var(--or)">Ctrl</b>을 클릭하여 나머지 사진도 선택해주세요.</p>
         <img class="si" data-key="photo_select" alt="사진 선택"></div></div>
-    <div class="step"><div class="shd2"><div class="sn">2</div><div class="st">사전설정 목록 열기</div></div>
-      <div class="sb"><p class="desc">라이트룸창 <b style="color:var(--or)">왼쪽 가장자리에 있는 세모</b>에 마우스를 올리면 사전설정 목록이 열립니다.</p>
-        <img class="si" data-key="filter_change" alt="사전설정 목록" style="max-width:260px;"></div></div>
-    <div class="step"><div class="shd2"><div class="sn">3</div><div class="st">설정 동기화</div></div>
+    <div class="step"><div class="shd2"><div class="sn">3</div><div class="st">변경할 필터 선택</div></div>
+      <div class="sb"><p class="desc">사전설정 목록에서 원하시는 필터를 클릭하여 변경해주세요.</p>
+        <img class="si" data-key="filter_change" alt="변경할 필터 선택" style="max-width:260px;"></div></div>
+    <div class="step"><div class="shd2"><div class="sn">4</div><div class="st">설정 동기화</div></div>
       <div class="sb"><p class="desc">상단 <b style="color:var(--or)">설정</b> 탭 &#8594; <b style="color:var(--or)">설정 동기화</b> 클릭!</p>
         <img class="si" data-key="sync1" alt="설정 동기화">
         <div style="margin-top:10px"><p class="desc">동기화 창이 뜨면 <b style="color:var(--or)">동기화 버튼</b> 클릭!</p>
@@ -605,19 +607,23 @@ textarea { resize: none; }
       <div class="sb"><p class="desc">하위 폴더에 넣기에 <b style="color:var(--or)">고객님 성함을 입력</b>한 후 내보내기 클릭!</p>
         <img class="si" data-key="export2" alt="폴더 설정">
         <div class="warn">&#9888;&#65039; 저장경로 및 다른 설정은 절대 건드리시면 안됩니다!</div></div></div>
-    <div class="step"><div class="shd2"><div class="sn">3</div><div class="st">내보내기 진행 중</div></div>
+    <div class="step"><div class="shd2"><div class="sn">3</div><div class="st">사진저장</div></div>
       <div class="sb"><p class="desc">화면 좌측 상단에 내보내기 현황이 표시됩니다. 100장 기준 <b style="color:var(--or)">약 3분</b> 소요됩니다.</p>
         <img class="si" data-key="exporting" alt="내보내는 중">
         <div style="margin-top:10px"><p class="desc">바탕화면에 성함으로 된 폴더가 생성됩니다.</p>
-        <img class="si" data-key="folder_created" alt="폴더 생성" style="max-width:100px;margin-top:8px;"></div>
-        <div class="tip">&#128161; 내보내기를 기다릴 필요 없이 라이트룸을 최소화한 뒤 바탕화면 폴더에서 인화할 사진을 선택해주세요.</div>
-        <img class="si" data-key="photo_pick" alt="사진 선택" style="margin-top:10px"></div></div>
+        <img class="si" data-key="folder_created" alt="폴더 생성" style="max-width:100px;margin-top:8px;"></div></div></div>
   
     <button class="back-bottom" onclick="backIdx()">&#8592; 목록으로 돌아가기</button>
   </div>
   <div id="tpl-4" style="display:none;">
-
-    <div class="step"><div class="shd2"><div class="sn">1</div><div class="st">인화지 &amp; 종이액자 꺼내기</div></div>
+    <div class="step"><div class="shd2"><div class="sn">1</div><div class="st">인쇄탭 이동 및 템플릿 선택</div></div>
+      <div class="sb"><p class="desc">우측 상단의 <b style="color:var(--or)">인쇄</b> (또는 <b style="color:var(--or)">Ctrl + Alt + 6</b>)를 눌러 인쇄탭으로 이동하세요.<br>
+        <b style="color:var(--or)">F7</b>을 눌러 왼쪽 패널(템플릿 브라우저)을 열어주세요. <b style="color:var(--or)">비프레임스튜디오_사진인화</b> 템플릿을 선택해주세요.</p>
+        <img class="si" data-key="print1" alt="인쇄 아이콘"></div></div>
+    <div class="step"><div class="shd2"><div class="sn">2</div><div class="st">사진 선택</div></div>
+      <div class="sb"><p class="desc">화면 하단에 뜬 사진 중 인화할 사진을 골라, 준비된 포스트잇에 선택한 사진이름을 적어주세요.</p>
+        <img class="si" data-key="photo_pick" alt="사진 선택"></div></div>
+    <div class="step"><div class="shd2"><div class="sn">3</div><div class="st">인화지 &amp; 종이액자 꺼내기</div></div>
       <div class="sb"><p class="desc">필요한 수량의 인화지와 종이액자를 꺼내주세요.</p>
         <img class="si" data-key="paper_out" alt="인화지 꺼내기">
         <div class="paper-box">
@@ -631,21 +637,19 @@ textarea { resize: none; }
             </tbody>
           </table>
         </div></div></div>
-    <div class="step"><div class="shd2"><div class="sn">2</div><div class="st">인화지 프린터에 넣기</div></div>
-      <div class="sb"><p class="desc"><b style="color:var(--or)">인화면이 앞을 보게</b> 인화지를 넣어주세요. 트레이를 앞으로 빼주세요!</p>
+    <div class="step"><div class="shd2"><div class="sn">4</div><div class="st">인화지 프린터에 넣기</div></div>
+      <div class="sb"><p class="desc"><b style="color:var(--or)">인화면이 앞을 보게</b> 인화지를 넣어주세요.</p>
         <img class="si" data-key="paper_in" alt="인화지 넣기"></div></div>
-    <div class="step"><div class="shd2"><div class="sn">3</div><div class="st">사진 인쇄하기</div></div>
-      <div class="sb"><p class="desc">바탕화면에 생성된 폴더에서 인화할 사진을 <b style="color:var(--or)">더블 클릭</b> 후, 뷰어창 상단 <b style="color:var(--or)">인쇄 아이콘 클릭!</b></p>
-        <img class="si" data-key="print1" alt="인쇄 아이콘">
-        <div style="margin-top:10px"><p class="desc">사진 인쇄 창이 뜨면 다른 설정은 건드리지 말고 <b style="color:var(--or)">인쇄 클릭!</b></p>
-        <img class="si" data-key="print2" alt="인쇄 설정"></div>
+    <div class="step"><div class="shd2"><div class="sn">5</div><div class="st">사진 인쇄하기</div></div>
+      <div class="sb"><p class="desc"><b style="color:var(--or)">F8</b>을 눌러 오른쪽 패널(인쇄작업)을 열고, <b style="color:var(--or)">인쇄</b> 버튼을 클릭해주세요.</p>
+        <img class="si" data-key="print2" alt="인쇄 설정">
         <div class="warn">&#9888;&#65039; 다른 설정은 절대 건드리지 마시고 인쇄 클릭!</div></div></div>
-  
+
     <button class="back-bottom" onclick="backIdx()">&#8592; 목록으로 돌아가기</button>
   </div>
   <div id="tpl-5" style="display:none;">
     <div class="step"><div class="shd2"><div class="sn">1</div><div class="st">사진 폴더 압축하기</div></div>
-      <div class="sb"><p class="desc">촬영한 사진 폴더를 우클릭 메뉴에서 <b style="color:var(--or)">압축하기</b> 클릭!</p>
+      <div class="sb"><p class="desc">내보내기가 완료된 사진 폴더를 우클릭 메뉴에서 <b style="color:var(--or)">압축하기</b> 클릭!</p>
         <img class="si" data-key="compress" alt="폴더 압축"></div></div>
     <div class="step"><div class="shd2"><div class="sn">2</div><div class="st">원본 전송하기</div></div>
       <div class="sb"><p class="desc">생성된 압축파일을 이메일, USB 등 원하는 매체로 전송!</p>
@@ -668,34 +672,34 @@ textarea { resize: none; }
 
 <script>
 var srcMap={
-  equip:"https://lh3.googleusercontent.com/d/1wa146_Y92QLPZPLGjrB3Lj8V-U6eT2qD",
-  lr_run:"https://lh3.googleusercontent.com/d/18rmmK2zTKAaY10I-EiC0XYRB1FyTYr79",
-  power:"https://lh3.googleusercontent.com/d/1ZFWGuT7jfyWW3SoYybs4dZDenLQECkno",
-  tethered:"https://lh3.googleusercontent.com/d/1OMZHgFFq1Z099xZMuLmc--7eHNBV0dLt",
-  session:"https://lh3.googleusercontent.com/d/162DF5B8iE9qn4IjhgYcnmmqUktbaMW8m",
-  camera_ok:"https://lh3.googleusercontent.com/d/1WhcpIDd3F_7AhlcbBO3MbHlwMn6PSwFl",
-  monitor_check:"https://lh3.googleusercontent.com/d/1c14i3s7KTLJBo221nLcerpls2v5FobW6",
-  remote:"https://lh3.googleusercontent.com/d/18fFKBdSRmoGo_x_lAIyk1Fs-lMUtDogK",
-  filter_select:"https://lh3.googleusercontent.com/d/1ssp1rJyHnM7pIx4r-K3dblc-W7Pf5R0R",
-  monitor_final:"https://lh3.googleusercontent.com/d/1ucQX8zV0bC9BKYxIpGawRYWRQbdNiX58",
-  photo_select:"https://lh3.googleusercontent.com/d/1i5fhl3w23e00EE_W-uWNGog_2N8A99kG",
-  filter_change:"https://lh3.googleusercontent.com/d/1Ve-mjbSpbhfxVvm-0ZcjlqSFcPd-2j9-",
-  sync1:"https://lh3.googleusercontent.com/d/1HCYyfdY192RiD9D0EYGYBVYEliX7Wo6p",
-  sync2:"https://lh3.googleusercontent.com/d/1c99BegPeEGWtLvXN5d0GSuKweWLODPnv",
-  export1:"https://lh3.googleusercontent.com/d/1QKyHQqGKqEXcx3SA7zFWYYh14r2LX2h-",
-  export2:"https://lh3.googleusercontent.com/d/1wcuH5TInP2o_zyKJJSJp-_DNPISsPyMy",
-  exporting:"https://lh3.googleusercontent.com/d/1oAt7xhTYQ1iIZO0IoNnPmc_XGYc4lmxc",
-  folder_created:"https://lh3.googleusercontent.com/d/1ahx6RyYM90KCsOZDuPqrkxxAJvY5WbQE",
-  photo_pick:"https://lh3.googleusercontent.com/d/1YT2xQdNT43fO0PXi9Wvcq6PmBdmlJxTi",
-  paper_out:"https://lh3.googleusercontent.com/d/1r_0BEPqwyBl7wokDS0fIKKlM5nkbgCXc",
-  paper_in:"https://lh3.googleusercontent.com/d/1iT8SNZn85ZBVGFgMSItfNoMQX2aybnQb",
-  print1:"https://lh3.googleusercontent.com/d/1No3ReYYqufnnLdFGsvHuLTS-wLgy88MK",
-  print2:"https://lh3.googleusercontent.com/d/1x0KqXuJV7Nok6cFDHfGsUkoNrs-H_C_b",
-  compress:"https://lh3.googleusercontent.com/d/1aCUY6Z3T-tGIHJ-2SbcX-d2MtNhpyw1o",
-  transfer:"https://lh3.googleusercontent.com/d/12zMUhJXunIZ-mJcCnD3vKU9E-xorAR7k",
-  kakao_send:"https://lh3.googleusercontent.com/d/1xAOzTj0B2ZvS1a7B9pDGdIBVpQG6Rm0Q",
-  delete1:"https://lh3.googleusercontent.com/d/1HyQJXI5uzuCM0a00dQkR3p8zbr24PAwd",
-  delete2:"https://lh3.googleusercontent.com/d/1i-SrEa5sHfA3CgDEjclY5czCATR7YmIf"
+  equip:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/1-1.png",
+  lr_run:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/2-1.png",
+  tethered:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/2-2.png",
+  session:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/2-3.png",
+  camera_ok:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/2-4-1.png",
+  monitor_check:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/2-4-2.png",
+  filter_select:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/2-5.png",
+  remote:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/2-6-1.png",
+  monitor_final:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/2-6-2.png",
+  dev_tab:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/3-1.png",
+  photo_select:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/3-2.png",
+  filter_change:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/3-3.png",
+  sync1:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/3-4-1.png",
+  sync2:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/3-4-2.png",
+  export1:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/4-1.png",
+  export2:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/4-2.png",
+  exporting:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/4-3-1.png",
+  folder_created:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/4-3-2.png",
+  print1:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/5-1.png",
+  photo_pick:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/5-2.png",
+  paper_out:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/5-3.png",
+  paper_in:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/5-4.png",
+  print2:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/5-5.png",
+  compress:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/6-1.png",
+  transfer:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/6-2-1.png",
+  kakao_send:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/6-2-2.png",
+  delete1:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/6-3.png",
+  delete2:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/6-4.png",
 };
 
 var SECS=[{num:"1",ttl:"장비 구성"},{num:"2",ttl:"촬영 준비"},{num:"3",ttl:"촬영 후 필터 변경"},{num:"4",ttl:"사진 내보내기"},{num:"5",ttl:"사진 인화"},{num:"6",ttl:"원본 챙기기"}];
