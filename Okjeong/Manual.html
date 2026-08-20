@@ -581,7 +581,7 @@ textarea { resize: none; }
   </div>
   <div id="tpl-2" style="display:none;">
     <div class="step"><div class="shd2"><div class="sn">1</div><div class="st">현상탭으로 이동</div></div>
-      <div class="sb"><p class="desc">우측 상단의 <b style="color:var(--or)">현상</b> (또는 <b style="color:var(--or)">D</b>)를 눌러 현상탭으로 이동하세요. <b style="color:var(--or)">F7</b>을 눌러 왼쪽 패널(사전설정 목록)을 열어주세요.</p>
+      <div class="sb"><p class="desc">우측 상단의 <b style="color:var(--or)">현상</b> 또는 <b style="color:var(--or)">D</b>를 눌러 현상탭으로 이동하세요. <b style="color:var(--or)">F7</b>을 눌러 왼쪽 패널(사전설정 목록)을 열어주세요.</p>
         <img class="si" data-key="dev_tab" alt="현상탭으로 이동"></div></div>
     <div class="step"><div class="shd2"><div class="sn">2</div><div class="st">필터 변경할 사진 선택</div></div>
       <div class="sb"><p class="desc">화면 하단에 뜬 촬영사진 중 필터 변경을 원하는 사진을 선택한 뒤, <b style="color:var(--or)">Ctrl</b>을 클릭하여 나머지 사진도 선택해주세요.</p>
@@ -616,14 +616,11 @@ textarea { resize: none; }
     <button class="back-bottom" onclick="backIdx()">&#8592; 목록으로 돌아가기</button>
   </div>
   <div id="tpl-4" style="display:none;">
-    <div class="step"><div class="shd2"><div class="sn">1</div><div class="st">인쇄탭 이동 및 템플릿 선택</div></div>
-      <div class="sb"><p class="desc">우측 상단의 <b style="color:var(--or)">인쇄</b> (또는 <b style="color:var(--or)">Ctrl + Alt + 6</b>)를 눌러 인쇄탭으로 이동하세요.<br>
-        <b style="color:var(--or)">F7</b>을 눌러 왼쪽 패널(템플릿 브라우저)을 열어주세요. <b style="color:var(--or)">비프레임스튜디오_사진인화</b> 템플릿을 선택해주세요.</p>
-        <img class="si" data-key="print1" alt="인쇄 아이콘"></div></div>
-    <div class="step"><div class="shd2"><div class="sn">2</div><div class="st">사진 선택</div></div>
-      <div class="sb"><p class="desc">화면 하단에 뜬 사진 중 인화할 사진을 골라, 준비된 포스트잇에 선택한 사진이름을 적어주세요.</p>
-        <img class="si" data-key="photo_pick" alt="사진 선택"></div></div>
-    <div class="step"><div class="shd2"><div class="sn">3</div><div class="st">인화지 &amp; 종이액자 꺼내기</div></div>
+    <div class="step"><div class="shd2"><div class="sn">1</div><div class="st">사진 선택</div></div>
+      <div class="sb"><p class="desc">내보내기가 완료될 때까지 기다릴 필요없이, 바탕화면에 생성된 폴더에서 인화할 사진을 선택해주세요.</p>
+        <img class="si" data-key="photo_pick" alt="사진 선택">
+        <div class="tip">&#128161; 원하는 사진의 파일명을 변경하면, 인화하실 때 수월해요.</div></div></div>
+    <div class="step"><div class="shd2"><div class="sn">2</div><div class="st">인화지 &amp; 종이액자 꺼내기</div></div>
       <div class="sb"><p class="desc">필요한 수량의 인화지와 종이액자를 꺼내주세요.</p>
         <img class="si" data-key="paper_out" alt="인화지 꺼내기">
         <div class="paper-box">
@@ -637,13 +634,15 @@ textarea { resize: none; }
             </tbody>
           </table>
         </div></div></div>
-    <div class="step"><div class="shd2"><div class="sn">4</div><div class="st">인화지 프린터에 넣기</div></div>
-      <div class="sb"><p class="desc"><b style="color:var(--or)">인화면이 앞을 보게</b> 인화지를 넣어주세요.</p>
+    <div class="step"><div class="shd2"><div class="sn">3</div><div class="st">인화지 프린터에 넣기</div></div>
+      <div class="sb"><p class="desc"><b style="color:var(--or)">인화면이 앞을 보게</b> 인화지를 넣어주세요. 트레이를 앞으로 빼주세요!</p>
         <img class="si" data-key="paper_in" alt="인화지 넣기"></div></div>
-    <div class="step"><div class="shd2"><div class="sn">5</div><div class="st">사진 인쇄하기</div></div>
-      <div class="sb"><p class="desc"><b style="color:var(--or)">F8</b>을 눌러 오른쪽 패널(인쇄작업)을 열고, <b style="color:var(--or)">인쇄</b> 버튼을 클릭해주세요.</p>
-        <img class="si" data-key="print2" alt="인쇄 설정">
-        <div class="warn">&#9888;&#65039; 다른 설정은 절대 건드리지 마시고 인쇄 클릭!</div></div></div>
+    <div class="step"><div class="shd2"><div class="sn">4</div><div class="st">사진 인쇄하기</div></div>
+      <div class="sb"><p class="desc">인화할 사진을 더블 클릭 후, 뷰어창 상단 인쇄 아이콘 클릭!</p>
+        <img class="si" data-key="print1" alt="인쇄 아이콘">
+        <div style="margin-top:10px"><p class="desc">사진 인쇄 창이 뜨면 다른 설정은 건들이지 말고 <b style="color:var(--or)">인쇄 클릭!</b></p>
+        <img class="si" data-key="print2" alt="인쇄 설정"></div>
+        <div class="warn">&#9888;&#65039; 다른 설정은 절대 건들이지 마세요!!!</div></div></div>
 
     <button class="back-bottom" onclick="backIdx()">&#8592; 목록으로 돌아가기</button>
   </div>
@@ -672,34 +671,34 @@ textarea { resize: none; }
 
 <script>
 var srcMap={
-  equip:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/1-1.png",
-  lr_run:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/2-1.png",
-  tethered:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/2-2.png",
-  session:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/2-3.png",
-  camera_ok:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/2-4-1.png",
-  monitor_check:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/2-4-2.png",
-  filter_select:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/2-5.png",
-  remote:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/2-6-1.png",
-  monitor_final:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/2-6-2.png",
-  dev_tab:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/3-1.png",
-  photo_select:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/3-2.png",
-  filter_change:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/3-3.png",
-  sync1:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/3-4-1.png",
-  sync2:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/3-4-2.png",
-  export1:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/4-1.png",
-  export2:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/4-2.png",
-  exporting:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/4-3-1.png",
-  folder_created:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/4-3-2.png",
-  print1:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/5-1.png",
-  photo_pick:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/5-2.png",
-  paper_out:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/5-3.png",
-  paper_in:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/5-4.png",
-  print2:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/5-5.png",
-  compress:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/6-1.png",
-  transfer:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/6-2-1.png",
-  kakao_send:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/6-2-2.png",
-  delete1:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/6-3.png",
-  delete2:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/6-4.png",
+  print1:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Okjeong/img/5-4-1.png",
+  print2:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Okjeong/img/5-4-2.png",
+  equip:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Okjeong/img/1-1.png",
+  lr_run:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Okjeong/img/2-1.png",
+  tethered:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Okjeong/img/2-2.png",
+  session:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Okjeong/img/2-3.png",
+  camera_ok:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Okjeong/img/2-4-1.png",
+  monitor_check:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Okjeong/img/2-4-2.png",
+  filter_select:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Okjeong/img/2-5.png",
+  remote:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Okjeong/img/2-6-1.png",
+  monitor_final:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Okjeong/img/2-6-2.png",
+  dev_tab:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Okjeong/img/3-1.png",
+  photo_select:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Okjeong/img/3-2.png",
+  filter_change:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Okjeong/img/3-3.png",
+  sync1:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Okjeong/img/3-4-1.png",
+  sync2:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Okjeong/img/3-4-2.png",
+  export1:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Okjeong/img/4-1.png",
+  export2:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Okjeong/img/4-2.png",
+  exporting:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Okjeong/img/4-3-1.png",
+  folder_created:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Okjeong/img/4-3-2.png",
+  photo_pick:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Okjeong/img/5-1.png",
+  paper_out:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Okjeong/img/5-2.png",
+  paper_in:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Okjeong/img/5-3.png",
+  compress:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Okjeong/img/6-1.png",
+  transfer:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Okjeong/img/6-2-1.png",
+  kakao_send:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Okjeong/img/6-2-2.png",
+  delete1:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Okjeong/img/6-3.png",
+  delete2:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Okjeong/img/6-4.png",
 };
 
 var SECS=[{num:"1",ttl:"장비 구성"},{num:"2",ttl:"촬영 준비"},{num:"3",ttl:"촬영 후 필터 변경"},{num:"4",ttl:"사진 내보내기"},{num:"5",ttl:"사진 인화"},{num:"6",ttl:"원본 챙기기"}];
