@@ -628,12 +628,14 @@ textarea { resize: none; }
           <table class="paper-tbl">
             <thead><tr><th>인원</th><th>인화지 수량</th></tr></thead>
             <tbody>
-              <tr><td>1인당</td><td>2장</td></tr>
+              <tr><td>1인 촬영</td><td>2장</td></tr>
+              <tr><td>2~3인 촬영</td><td>3장</td></tr>
+              <tr><td>추가 인원</td><td>1인당 1장 추가</td></tr>
             </tbody>
           </table>
         </div></div></div>
     <div class="step"><div class="shd2"><div class="sn">3</div><div class="st">인화지 프린터에 넣기</div></div>
-      <div class="sb"><p class="desc"><b style="color:var(--or)">인화면이 앞을 보게</b> 인화지를 넣어주세요.</p>
+      <div class="sb"><p class="desc"><b style="color:var(--or)">인화면이 앞을 보게</b> 인화지를 넣어주세요. 트레이를 앞으로 빼주세요!</p>
         <img class="si" data-key="paper_in" alt="인화지 넣기"></div></div>
     <div class="step"><div class="shd2"><div class="sn">4</div><div class="st">사진 인쇄하기</div></div>
       <div class="sb"><p class="desc">인화할 사진을 더블 클릭 후, 뷰어창 상단 인쇄 아이콘 클릭!</p>
@@ -669,32 +671,34 @@ textarea { resize: none; }
 
 <script>
 var srcMap={
-  equip:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/1-1.png",
-  lr_run:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/2-1.png",
-  tethered:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/2-2.png",
-  session:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/2-3.png",
-  camera_ok:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/2-4-1.png",
-  monitor_check:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/2-4-2.png",
-  filter_select:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/2-5.png",
-  remote:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/2-6-1.png",
-  monitor_final:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/2-6-2.png",
-  dev_tab:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/3-1.png",
-  photo_select:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/3-2.png",
-  filter_change:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/3-3.png",
-  sync1:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/3-4-1.png",
-  sync2:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/3-4-2.png",
-  export1:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/4-1.png",
-  export2:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/4-2.png",
-  exporting:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/4-3-1.png",
-  folder_created:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/4-3-2.png",
-  photo_pick:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/5-2.png",
-  paper_out:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/5-3.png",
-  paper_in:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/5-4.png",
-  compress:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/6-1.png",
-  transfer:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/6-2-1.png",
-  kakao_send:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/6-2-2.png",
-  delete1:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/6-3.png",
-  delete2:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Daejeon/img/6-4.png",
+  print1:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Chuncheon/img/5-4-1.png",
+  print2:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Chuncheon/img/5-4-2.png",
+  equip:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Chuncheon/img/1-1.png",
+  lr_run:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Chuncheon/img/2-1.png",
+  tethered:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Chuncheon/img/2-2.png",
+  session:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Chuncheon/img/2-3.png",
+  camera_ok:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Chuncheon/img/2-4-1.png",
+  monitor_check:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Chuncheon/img/2-4-2.png",
+  filter_select:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Chuncheon/img/2-5.png",
+  remote:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Chuncheon/img/2-6-1.png",
+  monitor_final:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Chuncheon/img/2-6-2.png",
+  dev_tab:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Chuncheon/img/3-1.png",
+  photo_select:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Chuncheon/img/3-2.png",
+  filter_change:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Chuncheon/img/3-3.png",
+  sync1:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Chuncheon/img/3-4-1.png",
+  sync2:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Chuncheon/img/3-4-2.png",
+  export1:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Chuncheon/img/4-1.png",
+  export2:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Chuncheon/img/4-2.png",
+  exporting:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Chuncheon/img/4-3-1.png",
+  folder_created:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Chuncheon/img/4-3-2.png",
+  photo_pick:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Chuncheon/img/5-2.png",
+  paper_out:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Chuncheon/img/5-3.png",
+  paper_in:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Chuncheon/img/5-4.png",
+  compress:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Chuncheon/img/6-1.png",
+  transfer:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Chuncheon/img/6-2-1.png",
+  kakao_send:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Chuncheon/img/6-2-2.png",
+  delete1:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Chuncheon/img/6-3.png",
+  delete2:"https://raw.githubusercontent.com/bframestudio/bframe-studio/main/Chuncheon/img/6-4.png",
 };
 
 var SECS=[{num:"1",ttl:"장비 구성"},{num:"2",ttl:"촬영 준비"},{num:"3",ttl:"촬영 후 필터 변경"},{num:"4",ttl:"사진 내보내기"},{num:"5",ttl:"사진 인화"},{num:"6",ttl:"원본 챙기기"}];
