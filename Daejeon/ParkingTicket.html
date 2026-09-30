@@ -22,6 +22,7 @@
       --panel1:#F3F7F5;
       --panel2:#F7F4EE;
       --bg:#FBFAF7;
+      --accent-height:clamp(1px, 0.22vw, 3px);
     }
 
     *{box-sizing:border-box}
@@ -106,7 +107,7 @@
 
     .accent{
       width:59px;
-      height:3px;
+      height:var(--accent-height);
       background:var(--orange);
       margin-top:0;
       border-radius:999px;
