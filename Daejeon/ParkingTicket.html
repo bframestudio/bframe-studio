@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>B:FRAME 주차이용권</title>
 
+  <!-- iPhone/PC에서 같은 한글 글꼴을 쓰도록 웹폰트 고정 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500&display=swap" rel="stylesheet">
+
   <!-- PNG 저장용 -->
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
@@ -27,10 +32,9 @@
       background:#ececec;
       font-family:
         "Noto Serif KR",
-        "Noto Sans KR",
         "Apple SD Gothic Neo",
         "Malgun Gothic",
-        sans-serif;
+        serif;
       color:#263b3b;
     }
 
@@ -45,7 +49,7 @@
     /* 실제 저장되는 주차권 */
     #ticket{
       width:900px;
-      height:1600px;
+      height:1450px;
       background:#FFFFFF;
       position:relative;
       overflow:hidden;
@@ -72,23 +76,24 @@
       z-index:1;
     }
 
-    .camera-logo{
-      width:180px;
-      height:86px;
-      margin-bottom:20px;
+    .top-logo{
+      width:315px;
+      max-width:76%;
+      margin-bottom:0;
+      display:flex;
+      justify-content:center;
+      align-items:center;
     }
 
-    .brand-top{
-      font-family:Arial, Helvetica, sans-serif;
-      font-size:54px;
-      font-weight:700;
-      letter-spacing:-2px;
-      color:var(--brand);
-      line-height:1;
+    .top-logo svg{
+      width:100%;
+      height:auto;
+      display:block;
     }
 
     .branch{
-      margin-top:56px;
+      margin-top:74px;
+      margin-bottom:10px;
       font-size:31px;
       color:var(--brown);
       letter-spacing:2px;
@@ -97,15 +102,15 @@
     }
 
     .accent{
-      width:62px;
+      width:59px;
       height:3px;
       background:var(--orange);
-      margin-top:30px;
+      margin-top:0;
       border-radius:999px;
     }
 
     .title-wrap{
-      margin-top:110px;
+      margin-top:74px;
       text-align:center;
     }
 
@@ -174,28 +179,25 @@
       text-align:center;
     }
 
-    .brand-bottom{
+    .info-small{
+      font-size:22px;
+      line-height:1.7;
+      opacity:.9;
+    }
+
+    .bottom-logo{
       margin-top:auto;
+      width:355px;
+      max-width:76%;
       display:flex;
+      justify-content:center;
       align-items:center;
-      gap:12px;
-      font-family:Arial, Helvetica, sans-serif;
-      color:var(--brand);
-      font-size:34px;
-      letter-spacing:-1px;
     }
 
-    .brand-bottom strong{
-      font-weight:700;
-    }
-
-    .brand-bottom .studio{
-      font-weight:400;
-    }
-
-    .focus-mark{
-      width:37px;
-      height:37px;
+    .bottom-logo svg{
+      width:100%;
+      height:auto;
+      display:block;
     }
 
     .controls{
@@ -209,20 +211,27 @@
 
     button{
       border:0;
-      padding:12px 20px;
-      border-radius:10px;
+      padding:14px 24px;
+      border-radius:12px;
       background:var(--brand);
       color:white;
       font-size:16px;
+      font-weight:600;
       cursor:pointer;
     }
 
-    .hint{
+    button:disabled{
+      opacity:.55;
+      cursor:default;
+    }
+
+    .save-note{
       width:900px;
       margin:10px auto 30px;
       text-align:center;
       color:#666;
-      font-size:14px;
+      font-size:13px;
+      line-height:1.55;
     }
 
     @media (max-width: 960px){
@@ -233,7 +242,7 @@
 
       #ticket{
         width:100vw;
-        height:177.78vw;
+        height:161.11vw;
         min-height:100vh;
         padding:8.5vw 7.5vw 6.5vw;
       }
@@ -244,20 +253,19 @@
         border-radius:3.5vw;
       }
 
-      .camera-logo{width:20vw;height:auto;margin-bottom:2vw}
-      .brand-top{font-size:6vw}
-      .branch{margin-top:6vw;font-size:3.5vw}
-      .accent{width:7vw;margin-top:3vw}
-      .title-wrap{margin-top:11vw}
+      .top-logo{width:35vw;max-width:68vw;margin-bottom:0}
+      .branch{margin-top:8vw;margin-bottom:1.1vw;font-size:3.5vw}
+      .accent{width:6.5vw;margin-top:0}
+      .title-wrap{margin-top:8vw}
       .ticket-title{font-size:8vw}
       .ticket-sub{font-size:2.7vw;letter-spacing:1.4vw;margin-top:3vw}
       .date-panel{margin-top:11vw;min-height:22vw}
       .panel-label{font-size:3.2vw;margin-bottom:2vw}
       .datetime{font-size:5.6vw}
       .info-panel{margin-top:2.8vw;min-height:25vw;font-size:3.2vw}
-      .brand-bottom{font-size:3.7vw}
-      .focus-mark{width:4vw;height:4vw}
-      .controls,.hint{width:100%}
+      .info-small{font-size:2.5vw}
+      .bottom-logo{width:39vw;max-width:74vw}
+      .controls,.save-note{width:100%}
     }
   </style>
 </head>
@@ -266,15 +274,40 @@
   <div class="page">
     <div id="ticket">
 
-      <!-- 상단 카메라 로고 -->
-      <svg class="camera-logo" viewBox="0 0 220 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M14 74V45C14 35.6 21.6 28 31 28H83L91 10H126L136 28H154L163 18H183L192 28H200C209.4 28 217 35.6 217 45V74"
-              stroke="#4F7373" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M79 75C83 52 96 41 111 41C126 41 139 52 143 75"
-              stroke="#4F7373" stroke-width="7" stroke-linecap="round"/>
-      </svg>
+      <div class="top-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="760 410 750 390">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #416f75;
+      }
 
-      <div class="brand-top">B:FRAME</div>
+      .cls-2 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <!-- Generator: Adobe Illustrator 28.6.0, SVG Export Plug-In . SVG Version: 1.2.0 Build 709)  -->
+  <g>
+    <g id="_레이어_3" data-name="레이어_3">
+      <g>
+        <path class="cls-1" d="M858.8,618.82h-.01c-3.57,0-6.45-2.9-6.44-6.47l.15-69.88c0-32.06,20.31-55.34,48.29-55.34h302.24l25.06.15c4.27,0,8.98-8.38,13.14-15.77,6.03-10.71,12.86-22.85,25.14-22.85h42.75c.09,0,.18,0,.26,0,12.73,0,19.71,14.55,25.33,26.25,2.04,4.26,5.07,10.57,6.9,12.22h20.12c25.33,0,45.95,24.83,45.95,55.36v69.88c0,3.57-2.89,6.46-6.46,6.46s-6.46-2.89-6.46-6.46v-69.88c0-23.4-14.82-42.45-33.04-42.45h-20.87c-8.41,0-12.75-9.05-17.78-19.54-3.62-7.54-9.09-18.93-13.81-18.93-.01,0-.03,0-.05,0h-42.85c-4.74,0-9.6,8.64-13.89,16.27-5.9,10.48-12.58,22.35-24.43,22.35l-25.06-.15h-302.2c-20.83,0-35.37,17.45-35.37,42.45l-.15,69.9c0,3.56-2.9,6.44-6.46,6.44Z"/>
+        <path class="cls-1" d="M1206.87,500.07c-2.7,0-5.21-1.7-6.12-4.4-.21-.64-.5-1.53-.85-2.62-14.07-44.1-25.59-50.79-31.28-50.79-.04,0-.08,0-.11,0h-77.88c-6.59,0-16.97,8.68-29.05,50.03l-.94,3.18c-1.04,3.41-4.68,5.32-8.06,4.29-3.41-1.04-5.33-4.65-4.29-8.06l.9-3.03c5.19-17.75,17.33-59.32,41.45-59.32h77.78c22.09-.36,35.56,33.95,43.79,59.78l.79,2.43c1.13,3.38-.68,7.04-4.06,8.18-.68.23-1.38.34-2.06.34Z"/>
+        <path class="cls-1" d="M1030.83,619.92c-.78,0-1.58-.14-2.35-.45-3.32-1.3-4.96-5.04-3.66-8.36,17.84-45.62,59.06-75.09,105.01-75.09s86.48,29.02,104.55,73.93c1.33,3.31-.27,7.07-3.58,8.4-3.3,1.32-7.07-.27-8.4-3.58-16.09-39.99-52.43-65.84-92.57-65.84s-77.1,26.25-92.99,66.89c-1,2.55-3.43,4.11-6.01,4.11Z"/>
+      </g>
+      <g>
+        <path class="cls-1" d="M778.08,662.18h47.34c8.49,0,15.7,1.27,21.61,3.82s10.37,6.12,13.36,10.73c2.99,4.6,4.48,9.94,4.48,16.03,0,4.55-.92,8.56-2.75,12.04-1.84,3.48-4.37,6.36-7.6,8.63-3.23,2.27-6.93,3.88-11.1,4.81v1.15c4.55.22,8.82,1.53,12.82,3.94,4,2.41,7.2,5.77,9.62,10.07,2.41,4.3,3.62,9.3,3.62,15,0,6.36-1.58,12-4.73,16.93-3.15,4.93-7.79,8.81-13.93,11.63-6.14,2.82-13.56,4.23-22.27,4.23h-50.46v-119.01ZM831.05,710.13c2.77-1.23,4.93-3,6.49-5.3,1.56-2.3,2.34-5.01,2.34-8.14,0-2.9-.7-5.45-2.1-7.64-1.4-2.19-3.43-3.88-6.08-5.05-2.66-1.18-5.82-1.77-9.49-1.77h-19.48v29.83h18.99c3.45-.05,6.56-.7,9.33-1.93ZM835.07,759.03c3.04-1.23,5.29-2.96,6.74-5.18,1.45-2.22,2.15-4.86,2.1-7.93.05-3.29-.73-6.23-2.34-8.83-1.62-2.6-3.92-4.62-6.9-6.04-2.99-1.42-6.48-2.14-10.48-2.14h-21.45v31.97h20.79c4.66,0,8.51-.62,11.55-1.85Z"/>
+        <path class="cls-1" d="M891.91,702.24c-2.14-1.23-3.82-2.92-5.05-5.05-1.23-2.14-1.82-4.46-1.77-6.99-.06-2.47.53-4.74,1.77-6.82,1.23-2.08,2.92-3.72,5.05-4.93,2.14-1.21,4.44-1.81,6.9-1.81s4.68.6,6.82,1.81c2.14,1.21,3.82,2.86,5.05,4.97,1.23,2.11,1.88,4.37,1.93,6.78-.06,2.52-.7,4.85-1.93,6.99-1.23,2.14-2.92,3.82-5.05,5.05-2.14,1.23-4.41,1.85-6.82,1.85s-4.77-.62-6.9-1.85ZM891.91,764.87c-2.14-1.23-3.82-2.92-5.05-5.05-1.23-2.14-1.82-4.46-1.77-6.99-.06-2.46.53-4.74,1.77-6.82,1.23-2.08,2.92-3.73,5.05-4.93,2.14-1.21,4.44-1.81,6.9-1.81s4.68.6,6.82,1.81c2.14,1.21,3.82,2.86,5.05,4.97,1.23,2.11,1.88,4.37,1.93,6.78-.06,2.52-.7,4.85-1.93,6.99-1.23,2.14-2.92,3.82-5.05,5.05-2.14,1.23-4.41,1.85-6.82,1.85s-4.77-.62-6.9-1.85Z"/>
+        <path class="cls-1" d="M932.67,662.18h78.41v20.38h-53.75v28.93h48.57v20.3h-48.57v49.39h-24.66v-119.01Z"/>
+        <path class="cls-1" d="M1027.35,662.18h46.52c8.93,0,16.6,1.58,23.01,4.73,6.41,3.15,11.29,7.66,14.63,13.52,3.34,5.86,5.01,12.71,5.01,20.55s-1.68,14.6-5.05,20.3c-3.37,5.7-8.3,10.07-14.79,13.11s-14.29,4.56-23.38,4.56h-31.48v-20.14h27.61c4.82,0,8.85-.67,12.08-2.01,3.23-1.34,5.64-3.31,7.23-5.92,1.59-2.6,2.38-5.9,2.38-9.9s-.79-7.4-2.38-10.19c-1.59-2.79-4.01-4.88-7.27-6.25-3.26-1.37-7.3-2.05-12.12-2.05h-17.34v98.71h-24.66v-119.01ZM1120.79,781.18h-27.45l-28.85-54.08h26.71l29.59,54.08Z"/>
+        <path class="cls-1" d="M1127.04,781.18l41.09-119.01h31.72l41.18,119.01h-26.55l-30-92.13h-.99l-30.08,92.13h-26.38ZM1215.64,734.42v19.31h-63.53v-19.31h63.53Z"/>
+        <path class="cls-1" d="M1284.92,662.18l33.12,80.62h1.4l33.04-80.62h30.49v119.01h-24v-77.99h-.99l-31.07,77.42h-16.52l-30.98-77.58h-.99v78.16h-23.92v-119.01h30.41Z"/>
+        <path class="cls-1" d="M1403.1,662.18h79.88v20.38h-55.23v28.93h51.04v20.3h-51.04v29.01h55.39v20.38h-80.05v-119.01Z"/>
+      </g>
+    </g>
+  </g>
+</svg>
+      </div>
 
       <div class="branch">대전시청점</div>
       <div class="accent"></div>
@@ -291,28 +324,59 @@
 
       <div class="panel info-panel">
         <div>비프레임스튜디오 이용 고객 전용</div>
-        <div>당일 1회 제시용</div>
         <div>경비실 확인용</div>
+        <div class="info-small">*당일 1회 사용 가능*</div>
       </div>
 
-      <div class="brand-bottom">
-        <strong>B:FRAME</strong>
-        <span class="studio">STUDIO</span>
-        <svg class="focus-mark" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" fill="none">
-          <path d="M3 13V3H13M27 3H37V13M37 27V37H27M13 37H3V27"
-                stroke="#4F7373" stroke-width="4" stroke-linecap="round"/>
-          <circle cx="20" cy="20" r="3.5" fill="#4F7373"/>
-        </svg>
+      <div class="bottom-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="340 530 1590 180">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #416f75;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <!-- Generator: Adobe Illustrator 28.6.0, SVG Export Plug-In . SVG Version: 1.2.0 Build 709)  -->
+  <g>
+    <g id="_레이어_3" data-name="레이어_3">
+      <g>
+        <path class="cls-1" d="M360.63,558.65h47.34c8.49,0,15.7,1.27,21.61,3.82s10.37,6.12,13.36,10.73c2.99,4.6,4.48,9.94,4.48,16.03,0,4.55-.92,8.56-2.75,12.04-1.84,3.48-4.37,6.36-7.6,8.63-3.23,2.27-6.93,3.88-11.1,4.81v1.15c4.55.22,8.82,1.53,12.82,3.94,4,2.41,7.2,5.77,9.62,10.07,2.41,4.3,3.62,9.3,3.62,15,0,6.36-1.58,12-4.73,16.93-3.15,4.93-7.79,8.81-13.93,11.63-6.14,2.82-13.56,4.23-22.27,4.23h-50.46v-119.01ZM413.6,606.6c2.77-1.23,4.93-3,6.49-5.3,1.56-2.3,2.34-5.01,2.34-8.14,0-2.9-.7-5.45-2.1-7.64-1.4-2.19-3.43-3.88-6.08-5.05-2.66-1.18-5.82-1.77-9.49-1.77h-19.48v29.83h18.99c3.45-.05,6.56-.7,9.33-1.93ZM417.63,655.5c3.04-1.23,5.29-2.96,6.74-5.18,1.45-2.22,2.15-4.86,2.1-7.93.05-3.29-.73-6.23-2.34-8.83-1.62-2.6-3.92-4.62-6.9-6.04-2.99-1.42-6.48-2.14-10.48-2.14h-21.45v31.97h20.79c4.66,0,8.51-.62,11.55-1.85Z"/>
+        <path class="cls-1" d="M474.46,598.71c-2.14-1.23-3.82-2.92-5.05-5.05-1.23-2.14-1.82-4.46-1.77-6.99-.06-2.47.53-4.74,1.77-6.82,1.23-2.08,2.92-3.72,5.05-4.93,2.14-1.21,4.44-1.81,6.9-1.81s4.68.6,6.82,1.81c2.14,1.21,3.82,2.86,5.05,4.97,1.23,2.11,1.88,4.37,1.93,6.78-.06,2.52-.7,4.85-1.93,6.99-1.23,2.14-2.92,3.82-5.05,5.05-2.14,1.23-4.41,1.85-6.82,1.85s-4.77-.62-6.9-1.85ZM474.46,661.34c-2.14-1.23-3.82-2.92-5.05-5.05-1.23-2.14-1.82-4.46-1.77-6.99-.06-2.46.53-4.74,1.77-6.82,1.23-2.08,2.92-3.73,5.05-4.93,2.14-1.21,4.44-1.81,6.9-1.81s4.68.6,6.82,1.81c2.14,1.21,3.82,2.86,5.05,4.97,1.23,2.11,1.88,4.37,1.93,6.78-.06,2.52-.7,4.85-1.93,6.99-1.23,2.14-2.92,3.82-5.05,5.05-2.14,1.23-4.41,1.85-6.82,1.85s-4.77-.62-6.9-1.85Z"/>
+        <path class="cls-1" d="M515.22,558.65h78.41v20.38h-53.75v28.93h48.57v20.3h-48.57v49.39h-24.66v-119.01Z"/>
+        <path class="cls-1" d="M609.9,558.65h46.52c8.93,0,16.6,1.58,23.01,4.73,6.41,3.15,11.29,7.66,14.63,13.52,3.34,5.86,5.01,12.71,5.01,20.55s-1.68,14.6-5.05,20.3c-3.37,5.7-8.3,10.07-14.79,13.11s-14.29,4.56-23.38,4.56h-31.48v-20.14h27.61c4.82,0,8.85-.67,12.08-2.01,3.23-1.34,5.64-3.31,7.23-5.92,1.59-2.6,2.38-5.9,2.38-9.9s-.79-7.4-2.38-10.19c-1.59-2.79-4.01-4.88-7.27-6.25-3.26-1.37-7.3-2.05-12.12-2.05h-17.34v98.71h-24.66v-119.01ZM703.35,677.65h-27.45l-28.85-54.08h26.71l29.59,54.08Z"/>
+        <path class="cls-1" d="M709.59,677.65l41.09-119.01h31.72l41.18,119.01h-26.55l-30-92.13h-.99l-30.08,92.13h-26.38ZM798.19,630.89v19.31h-63.53v-19.31h63.53Z"/>
+        <path class="cls-1" d="M867.47,558.65l33.12,80.62h1.4l33.04-80.62h30.49v119.01h-24v-77.99h-.99l-31.07,77.42h-16.52l-30.98-77.58h-.99v78.16h-23.92v-119.01h30.41Z"/>
+        <path class="cls-1" d="M985.66,558.65h79.88v20.38h-55.23v28.93h51.04v20.3h-51.04v29.01h55.39v20.38h-80.05v-119.01Z"/>
+        <path class="cls-1" d="M1188,577.26c-2.41-3.21-5.67-5.64-9.78-7.31-4.11-1.67-8.71-2.51-13.81-2.51-5.37,0-10.15.92-14.34,2.75-4.19,1.84-7.47,4.4-9.82,7.68-2.36,3.29-3.53,7.01-3.53,11.18.05,5.7,2.27,10.19,6.66,13.48,4.38,3.29,10.03,5.86,16.93,7.73l12.33,3.45c9.53,2.63,17.35,6.37,23.46,11.22,6.11,4.85,9.16,11.82,9.16,20.92,0,6.47-1.66,12.26-4.97,17.38-3.32,5.12-8.14,9.15-14.46,12.08-6.33,2.93-13.77,4.4-22.31,4.4-8.05,0-15.1-1.36-21.12-4.07-6.03-2.71-10.78-6.48-14.26-11.3-3.48-4.82-5.44-10.41-5.88-16.77h11.92c.38,4.55,1.9,8.42,4.56,11.63,2.66,3.21,6.14,5.64,10.44,7.32,4.3,1.67,9.08,2.51,14.34,2.51,5.86,0,11.11-.97,15.74-2.92,4.63-1.94,8.22-4.7,10.77-8.26,2.55-3.56,3.82-7.64,3.82-12.25,0-3.83-.99-7.09-2.96-9.78-1.97-2.68-4.73-4.92-8.26-6.7-3.53-1.78-7.99-3.44-13.36-4.97l-14.3-4.03c-9.64-2.9-16.99-6.85-22.03-11.83-5.04-4.99-7.56-11.23-7.56-18.74,0-6.36,1.71-12.03,5.14-17.01,3.42-4.98,8.14-8.83,14.14-11.55,6-2.71,12.7-4.07,20.09-4.07s13.93,1.36,19.77,4.07,10.42,6.48,13.77,11.3c3.34,4.82,5.12,10.22,5.34,16.19h-11.42c-.38-4.27-1.78-8.01-4.19-11.22Z"/>
+        <path class="cls-1" d="M1221.12,558.65h87.12v10.44h-37.64v108.57h-11.83v-108.57h-37.64v-10.44Z"/>
+        <path class="cls-1" d="M1420.09,558.65v78.73c0,8.05-1.9,15.29-5.71,21.7-3.81,6.41-9.15,11.45-16.03,15.12-6.88,3.67-14.75,5.51-23.63,5.51s-16.75-1.84-23.63-5.51c-6.88-3.67-12.22-8.71-16.03-15.12-3.81-6.41-5.71-13.64-5.71-21.7v-78.73h11.67v77.91c0,6.19,1.38,11.71,4.15,16.56,2.77,4.85,6.71,8.67,11.83,11.46,5.12,2.79,11.03,4.19,17.71,4.19s12.59-1.4,17.71-4.19c5.12-2.79,9.05-6.62,11.79-11.46,2.74-4.85,4.14-10.37,4.19-16.56v-77.91h11.67Z"/>
+        <path class="cls-1" d="M1460.04,677.65h-11.67v-119.01h11.67v119.01ZM1454.78,677.65v-10.52h28.19c9.97,0,18.37-1.96,25.19-5.88,6.82-3.92,11.94-9.56,15.37-16.93,3.42-7.37,5.11-16.18,5.05-26.42,0-10.19-1.66-18.93-4.97-26.22-3.32-7.29-8.23-12.88-14.75-16.77-6.52-3.89-14.49-5.83-23.92-5.83h-30.57v-10.44h31.31c11.29,0,21.01,2.34,29.18,7.03,8.16,4.68,14.41,11.49,18.74,20.42,4.33,8.93,6.49,19.53,6.49,31.81s-2.22,23.13-6.66,32.09c-4.44,8.96-10.88,15.81-19.31,20.55-8.44,4.74-18.57,7.11-30.41,7.11h-28.93Z"/>
+        <path class="cls-1" d="M1574.85,677.65h-11.67v-119.01h11.67v119.01Z"/>
+        <path class="cls-1" d="M1694.72,650.32c-4.41,9.23-10.53,16.37-18.37,21.41-7.84,5.04-16.74,7.56-26.71,7.56s-19.03-2.52-26.83-7.56-13.9-12.18-18.29-21.41c-4.38-9.23-6.57-19.96-6.57-32.18s2.2-22.96,6.62-32.22c4.41-9.26,10.51-16.4,18.29-21.41,7.78-5.01,16.71-7.52,26.79-7.52s18.87,2.51,26.71,7.52c7.83,5.01,13.96,12.15,18.37,21.41,4.41,9.26,6.62,20,6.62,32.22s-2.21,22.94-6.62,32.18ZM1684.77,591.27c-3.48-7.56-8.27-13.33-14.38-17.3-6.11-3.97-13.03-5.96-20.75-5.96s-14.71,1.99-20.79,5.96c-6.08,3.97-10.88,9.74-14.38,17.3-3.51,7.56-5.26,16.52-5.26,26.88s1.75,19.22,5.26,26.75c3.51,7.53,8.3,13.31,14.38,17.34,6.08,4.03,13.01,6.04,20.79,6.04s14.64-2.01,20.75-6.04c6.11-4.03,10.9-9.81,14.38-17.34,3.48-7.53,5.22-16.45,5.22-26.75s-1.74-19.31-5.22-26.88Z"/>
+      </g>
+      <polygon class="cls-1" points="1762.5 597.1 1776.21 597.1 1776.21 567.16 1803.52 567.16 1803.52 556.08 1762.5 556.08 1762.5 597.1"/>
+      <polygon class="cls-1" points="1803.52 680.24 1803.52 666.53 1773.59 666.53 1773.59 639.22 1762.5 639.22 1762.5 680.24 1803.52 680.24"/>
+      <polygon class="cls-1" points="1905.16 639.22 1891.45 639.22 1891.45 669.15 1864.14 669.15 1864.14 680.24 1905.16 680.24 1905.16 639.22"/>
+      <polygon class="cls-1" points="1864.14 556.08 1864.14 569.78 1894.07 569.78 1894.07 597.1 1905.16 597.1 1905.16 556.08 1864.14 556.08"/>
+      <circle class="cls-1" cx="1833.83" cy="618.16" r="14.98"/>
+    </g>
+  </g>
+</svg>
       </div>
     </div>
   </div>
 
   <div class="controls">
-    <button id="downloadBtn">주차권 PNG 저장</button>
+    <button id="downloadBtn" disabled>주차권 이미지 준비 중…</button>
   </div>
+  <div class="save-note" id="saveNote"></div>
 
   <script>
-    // 한국 시간 기준 현재 일시 표시
     function getKoreaNow(){
       const now = new Date();
 
@@ -336,33 +400,113 @@
     }
 
     const issue = getKoreaNow();
-    document.getElementById('datetime').textContent = issue.display;
+    const datetimeEl = document.getElementById('datetime');
+    const saveBtn = document.getElementById('downloadBtn');
+    const saveNote = document.getElementById('saveNote');
 
-    async function downloadTicket(){
+    datetimeEl.textContent = issue.display;
+
+    let pngBlob = null;
+    let pngFile = null;
+
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+                  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+    function canvasToBlob(canvas){
+      return new Promise((resolve, reject) => {
+        canvas.toBlob(blob => {
+          if (blob) resolve(blob);
+          else reject(new Error('PNG 변환 실패'));
+        }, 'image/png', 1);
+      });
+    }
+
+    async function buildTicketImage(){
+      // 웹폰트가 실제로 모두 로드된 뒤 캡처해야 iPhone/PC 글꼴이 동일해집니다.
+      if (document.fonts && document.fonts.ready) {
+        await document.fonts.ready;
+      }
+
       const ticket = document.getElementById('ticket');
 
       const canvas = await html2canvas(ticket, {
         scale: 2,
         backgroundColor: '#FFFFFF',
         useCORS: true,
+        allowTaint: false,
         logging: false
       });
 
-      const link = document.createElement('a');
-      link.download = `BFRAME_PARKING_${issue.file}.png`;
-      link.href = canvas.toDataURL('image/png');
-      link.click();
+      pngBlob = await canvasToBlob(canvas);
+      pngFile = new File(
+        [pngBlob],
+        `BFRAME_PARKING_${issue.file}.png`,
+        { type: 'image/png' }
+      );
+
+      saveBtn.disabled = false;
+      saveBtn.textContent = isIOS ? '주차권 이미지 저장' : '주차권 PNG 저장';
+
+      if (isIOS) {
+        saveNote.textContent = '아이폰에서는 버튼을 누른 뒤 공유 메뉴에서 ‘이미지 저장’을 선택하면 사진 앱에 저장됩니다.';
+      } else {
+        saveNote.textContent = '';
+      }
     }
 
-    document.getElementById('downloadBtn').addEventListener('click', downloadTicket);
+    async function saveTicket(){
+      try {
+        if (!pngBlob || !pngFile) {
+          await buildTicketImage();
+        }
 
-    // QR 접속 시 자동 다운로드
-    // 모바일 브라우저 정책상 자동 다운로드가 막힐 수 있으므로,
-    // 실패 시 아래 버튼으로 직접 저장 가능
+        // iPhone/iPad: 자동 다운로드 대신 iOS 공유 메뉴를 사용합니다.
+        // 사용자가 '이미지 저장'을 선택하면 사진 앱에 확실히 저장됩니다.
+        if (
+          isIOS &&
+          navigator.share &&
+          navigator.canShare &&
+          navigator.canShare({ files: [pngFile] })
+        ) {
+          await navigator.share({
+            files: [pngFile],
+            title: 'B:FRAME 주차이용권'
+          });
+          return;
+        }
+
+        // 데스크톱/안드로이드 등: 일반 파일 다운로드
+        const url = URL.createObjectURL(pngBlob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = pngFile.name;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+
+        setTimeout(() => URL.revokeObjectURL(url), 3000);
+      } catch (err) {
+        // 공유 메뉴를 닫은 경우에는 오류 알림을 띄우지 않음
+        if (err && err.name === 'AbortError') return;
+
+        // 마지막 수단: 이미지 자체를 새 창에서 열어 길게 눌러 저장 가능
+        if (pngBlob) {
+          const url = URL.createObjectURL(pngBlob);
+          window.open(url, '_blank');
+          saveNote.textContent = '이미지가 새 화면에 열렸습니다. 이미지를 길게 눌러 ‘사진 앱에 저장’을 선택해주세요.';
+        }
+      }
+    }
+
+    saveBtn.addEventListener('click', saveTicket);
+
+    // iOS는 페이지 진입 즉시 발생하는 자동 다운로드를 차단할 수 있으므로
+    // 자동 저장은 하지 않고 PNG만 미리 만들어 둡니다.
     window.addEventListener('load', () => {
-      setTimeout(() => {
-        downloadTicket().catch(() => {});
-      }, 700);
+      buildTicketImage().catch(() => {
+        saveBtn.disabled = false;
+        saveBtn.textContent = '주차권 이미지 저장';
+      });
     });
   </script>
 </body>
