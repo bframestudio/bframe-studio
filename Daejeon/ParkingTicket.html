@@ -44,12 +44,15 @@
       align-items:center;
       justify-content:center;
       padding:24px;
+      width:100%;
     }
 
     /* 실제 저장되는 주차권 */
     #ticket{
       width:900px;
       height:1450px;
+      margin-left:auto;
+      margin-right:auto;
       background:#FFFFFF;
       position:relative;
       overflow:hidden;
@@ -202,7 +205,7 @@
 
     .controls{
       width:900px;
-      margin:16px auto 0;
+      margin:8px auto 0;
       display:flex;
       gap:10px;
       justify-content:center;
@@ -233,12 +236,19 @@
       }
 
       .page{
-        padding:12px 0 0;
+        min-height:auto;
+        padding:8px 0 0;
+        width:100%;
+        display:flex;
+        justify-content:center;
+        align-items:flex-start;
       }
 
       #ticket{
         width:390px;
         height:628px;
+        margin-left:auto;
+        margin-right:auto;
         max-width:calc(100vw - 24px);
         max-height:none;
         min-height:0;
@@ -263,7 +273,18 @@
       .info-panel{margin-top:11px;min-height:98px;font-size:12px;border-radius:11px;line-height:1.85}
       .info-small{font-size:9px}
       .bottom-logo{width:152px;max-width:74%}
-      .controls{width:100%}
+      .controls{
+        width:100%;
+        margin:6px auto 0;
+        padding:0 12px 10px;
+      }
+
+      .controls button{
+        width:calc(100% - 24px);
+        max-width:390px;
+        padding:11px 18px;
+        font-size:15px;
+      }
     }
   </style>
 </head>
