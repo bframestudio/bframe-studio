@@ -1109,19 +1109,45 @@ function BFrameMaker() {
     setActiveOverlay
   };
 
-  // 파일로 저장 — JPG 고정 (Electron 브리지 있으면 저장 대화상자, 없으면 다운로드)
+  // 파일로 저장 — JPG 고정
+  // 1순위: 저장 위치 선택창(showSaveFilePicker) → 손님이 바탕화면 선택 가능,
+  //         브라우저가 마지막 위치를 기억하므로 한 번 바탕화면을 고르면 다음부터 바탕화면이 기본.
+  // 2순위: 미지원 브라우저 → 기존 다운로드 폴더 저장.
   const [saving, setSaving] = useState(false);
   const saveImage = async () => {
     if (filledCount === 0) return;
     setSaving(true);
     try {
       const blob = await renderToCanvas(frame, style, photos, "jpg", overlays);
+      const filename = `bframe_${frame.type}_${Date.now()}.jpg`;
+
+      // 1순위: 파일 시스템 접근 API (크롬/엣지) — 저장 위치 선택창
+      if (window.showSaveFilePicker) {
+        try {
+          const handle = await window.showSaveFilePicker({
+            suggestedName: filename,
+            // id를 지정하면 브라우저가 이 앱의 "마지막 저장 위치"를 기억함
+            id: "bframe-cutmaker",
+            startIn: "desktop",
+            types: [{ description: "JPEG 이미지", accept: { "image/jpeg": [".jpg", ".jpeg"] } }],
+          });
+          const writable = await handle.createWritable();
+          await writable.write(blob);
+          await writable.close();
+          return; // 저장 완료
+        } catch (e) {
+          // 손님이 창을 닫으면(취소) 아무 것도 안 함
+          if (e && e.name === "AbortError") return;
+          // 그 외 오류는 아래 다운로드로 폴백
+        }
+      }
+
+      // 2순위: 다운로드 폴백 (미지원 브라우저)
       const dataUrl = await new Promise(res => {
         const r = new FileReader();
         r.onload = () => res(r.result);
         r.readAsDataURL(blob);
       });
-      const filename = `bframe_${frame.type}_${Date.now()}.jpg`;
       if (window.bframe?.saveImage) {
         await window.bframe.saveImage(dataUrl, filename);
       } else {
