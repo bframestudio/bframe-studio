@@ -486,15 +486,68 @@ textarea { resize: none; }
         <div>
           <div style="font-size:15px;font-weight:700;color:var(--or);margin-bottom:10px;">전문 작가 보정 안내</div>
           <div style="font-size:14px;color:#8A5A10;line-height:1.9;display:flex;flex-direction:column;gap:4px;">
-            <div>&#127807; 1장당 <b style="color:#8A5A10;">8,000원</b> (2인 기준 · 보정 5,000원 + 인화지 3,000원)</div>
+            <div>&#127807; 보정 1장당 <b style="color:#8A5A10;">5,000원</b> (2인 기준)</div>
             <div>&#127807; 추가 인원 1인당 <b style="color:#8A5A10;">2,000원/장</b></div>
+            <div>&#127807; 보정본 인화 (선택) 1장당 <b style="color:#8A5A10;">3,000원</b></div>
             <div>&#127807; 레터링 문구 추가 무료</div>
             <div>&#127807; 안내 계좌로 입금 부탁드리며, <b style="color:#8A5A10;">입금 확인 후</b> 보정 작업이 진행됩니다.</div>
             <div>&#8986;&#65039; 보정 기간은 사진 수신일로부터 <b style="color:#8A5A10;">약 3일</b>이며, 파일은 <b style="color:#8A5A10;">보내신 이메일</b>로 회신됩니다.</div>
-            <div>&#128236; 보정 인화본은 <b style="color:#8A5A10;">우편</b>으로 발송됩니다. (발송일: 매주 <b style="color:#8A5A10;">화·목요일</b>)</div>
+            <div>&#128236; 인화를 선택하시면 인화본은 <b style="color:#8A5A10;">우편</b>으로 발송됩니다. (발송일: 매주 <b style="color:#8A5A10;">화·목요일</b>)</div>
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- 유료: 보정 견적 -->
+    <div id="paid-x" style="">
+      <div class="fsec">
+        <div class="ftl">보정 견적 내역</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--bd);">
+          <div>
+            <div style="font-size:15px;font-weight:600;color:var(--tx);">보정할 사진 장수</div>
+            <div style="font-size:13px;color:var(--mu);margin-top:2px;">기본 2인 기준</div>
+          </div>
+          <div class="cr">
+            <button class="cb" style="width:34px;height:34px;font-size:20px;" onclick="chP(-1)">&#8722;</button>
+            <span class="cv" id="pv">1</span><span class="cu">장</span>
+            <button class="cb" style="width:34px;height:34px;font-size:20px;" onclick="chP(1)">+</button>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--bd);">
+          <div>
+            <div style="font-size:15px;font-weight:600;color:var(--tx);">추가 인원</div>
+            <div style="font-size:13px;color:var(--mu);margin-top:2px;">3인부터 추가 인원 선택</div>
+          </div>
+          <div class="cr">
+            <button class="cb" style="width:34px;height:34px;font-size:20px;" onclick="chE(-1)">&#8722;</button>
+            <span class="cv" id="ev">0</span><span class="cu">명</span>
+            <button class="cb" style="width:34px;height:34px;font-size:20px;" onclick="chE(1)">+</button>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 0;">
+          <div>
+            <div style="font-size:15px;font-weight:600;color:var(--tx);">보정본 인화 <span style="font-size:12px;color:var(--mu);font-weight:400;">(선택)</span></div>
+            <div style="font-size:13px;color:var(--mu);margin-top:2px;">1장당 3,000원 · 우편 발송</div>
+          </div>
+          <div class="cr">
+            <button class="cb" style="width:34px;height:34px;font-size:20px;" onclick="chR(-1)">&#8722;</button>
+            <span class="cv" id="rv">0</span><span class="cu">장</span>
+            <button class="cb" style="width:34px;height:34px;font-size:20px;" onclick="chR(1)">+</button>
+          </div>
+        </div>
+        <div class="pbox">
+          <div class="prow"><span class="pl" id="bl">보정 (1장 x 5,000원)</span><span id="bp">5,000원</span></div>
+          <div class="prow" id="rp-row" style="display:none;"><span class="pl" id="rl">인화</span><span id="rp">0원</span></div>
+          <div class="prow" id="ep-row" style="display:none;"><span class="pl" id="el">추가</span><span id="ep">0원</span></div>
+          <hr class="pdiv">
+          <div class="ptot"><span class="tl">최종 결제 금액</span><span class="tv" id="tp">5,000원</span></div>
+        </div>
+      </div>
+
+    <!-- 요청 사항 -->
+    <div class="fsec" id="request-sec" style="">
+      <div class="ftl">요청 사항 <span style="font-size:13px;color:var(--mu);font-weight:400;">(선택)</span></div>
+      <textarea rows="3" placeholder="예) 피부 잡티 제거 / 머리숱 보강 / 얼굴·팔다리 라인 슬림하게 / 팔뚝·복부 라인 정리 / 턱선 갸름하게 / 레터링 문구 및 위치 기입 등"></textarea>
     </div>
 
     <!-- 신청자 정보 -->
@@ -518,8 +571,8 @@ textarea { resize: none; }
           <option value="대전시청점">대전시청점</option>
         </select>
       </div>
-      <div class="frow">
-        <label>보정본 받으실 주소 <span style="color:var(--or);">*</span></label>
+      <div class="frow" id="addr-row" style="display:none;">
+        <label>인화본 받으실 주소 <span style="color:var(--or);">*</span></label>
         <div style="display:flex;gap:8px;margin-bottom:8px;">
           <input type="text" id="inp-zip" placeholder="우편번호" readonly onclick="findAddr()" style="flex:1;cursor:pointer;">
           <button type="button" onclick="findAddr()" style="flex-shrink:0;padding:0 16px;border:1px solid var(--or);background:var(--or);color:#fff;border-radius:var(--r);font-size:14px;font-weight:700;cursor:pointer;">우편번호 찾기</button>
@@ -529,61 +582,10 @@ textarea { resize: none; }
       </div>
     </div>
 
-    <!-- 이메일 안내 -->
-    <div class="fsec" id="email-guide" style="border-color:var(--t);background:var(--t-light);">
-      <div style="display:flex;align-items:flex-start;gap:10px;">
-        <span style="font-size:22px;flex-shrink:0;">&#128247;</span>
-        <div>
-          <div style="font-size:15px;font-weight:700;color:var(--t);margin-bottom:8px;">보정할 사진 전송 안내</div>
-          <div style="font-size:14px;color:var(--t);line-height:1.9;">
-            신청 완료 후, 보정할 사진을 아래 이메일로 보내주세요.<br>
-            <div style="margin-top:6px;font-size:13px;color:var(--t);line-height:1.9;">
-              &#183; 꼭 <b style="color:var(--t);">고화질 원본 사진</b>으로 보내주세요!!
-            </div>
-            <span style="display:inline-block;margin-top:8px;font-size:16px;font-weight:700;color:var(--or);">bframe_studio@naver.com</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 유료: 보정 견적 -->
-    <div id="paid-x" style="">
-      <div class="fsec">
-        <div class="ftl">보정 견적 내역</div>
-        <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--bd);">
-          <div>
-            <div style="font-size:15px;font-weight:600;color:var(--tx);">보정할 사진 장수</div>
-            <div style="font-size:13px;color:var(--mu);margin-top:2px;">기본 2인 기준</div>
-          </div>
-          <div class="cr">
-            <button class="cb" style="width:34px;height:34px;font-size:20px;" onclick="chP(-1)">&#8722;</button>
-            <span class="cv" id="pv">1</span><span class="cu">장</span>
-            <button class="cb" style="width:34px;height:34px;font-size:20px;" onclick="chP(1)">+</button>
-          </div>
-        </div>
-        <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 0;">
-          <div>
-            <div style="font-size:15px;font-weight:600;color:var(--tx);">추가 인원</div>
-            <div style="font-size:13px;color:var(--mu);margin-top:2px;">3인부터 추가 인원 선택</div>
-          </div>
-          <div class="cr">
-            <button class="cb" style="width:34px;height:34px;font-size:20px;" onclick="chE(-1)">&#8722;</button>
-            <span class="cv" id="ev">0</span><span class="cu">명</span>
-            <button class="cb" style="width:34px;height:34px;font-size:20px;" onclick="chE(1)">+</button>
-          </div>
-        </div>
-        <div class="pbox">
-          <div class="prow"><span class="pl" id="bl">기본 (1장 x 8,000원)</span><span id="bp">8,000원</span></div>
-          <div class="prow" id="ep-row" style="display:none;"><span class="pl" id="el">추가</span><span id="ep">0원</span></div>
-          <hr class="pdiv">
-          <div class="ptot"><span class="tl">최종 결제 금액</span><span class="tv" id="tp">8,000원</span></div>
-        </div>
-      </div>
-
       <!-- 결제 -->
       <div id="payment-sec" class="fsec" style="">
         <div class="ftl">결제</div>
-        <div class="pa"><span>결제 금액</span><span id="pay-tp">8,000원</span></div>
+        <div class="pa"><span>결제 금액</span><span id="pay-tp">5,000원</span></div>
         <div style="background:var(--t-light);border-radius:var(--r);padding:14px 16px;margin-bottom:10px;">
           <div style="font-size:13px;color:var(--mu);margin-bottom:6px;">입금 계좌</div>
           <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
@@ -599,11 +601,6 @@ textarea { resize: none; }
       </div>
     </div>
 
-    <!-- 요청 사항 -->
-    <div class="fsec" id="request-sec" style="">
-      <div class="ftl">요청 사항 <span style="font-size:13px;color:var(--mu);font-weight:400;">(선택)</span></div>
-      <textarea rows="3" placeholder="예) 피부 잡티 제거 / 머리숱 보강 / 얼굴·팔다리 라인 슬림하게 / 팔뚝·복부 라인 정리 / 턱선 갸름하게 / 레터링 문구 및 위치 기입 등"></textarea>
-    </div>
 
     <button class="sbtn" id="sub-btn" onclick="submitR()">보정 신청하기</button>
   </div>
@@ -611,15 +608,39 @@ textarea { resize: none; }
   <!-- 완료 화면 -->
   <div id="ret-done" class="done" style="display:none;">
     <div class="done-ic" style="background:var(--or-light);border:2px solid var(--or);">&#128203;</div>
-    <h3 style="color:var(--or);">신청이 접수되었습니다!</h3>
+    <h3 style="color:var(--or);">신청 정보 확인</h3>
     <div style="background:#FFF8E8;border:1.5px solid var(--or);border-radius:var(--r);padding:14px 16px;margin-top:1rem;text-align:left;">
       <div style="font-size:15px;font-weight:700;color:var(--or);margin-bottom:6px;">&#9888;&#65039; 아직 보정이 시작되지 않았어요!</div>
       <div style="font-size:14px;color:#8A5A10;line-height:1.8;">아래 버튼을 눌러 <b style="color:#8A5A10;">사진을 전송해야</b> 보정이 시작됩니다.</div>
     </div>
 
+    <!-- 이메일 양식 미리보기 -->
+    <div style="background:var(--bg);border:1px solid var(--bd);border-radius:var(--r);padding:16px;margin-top:1rem;text-align:left;">
+      <div style="font-size:13px;font-weight:700;color:var(--mu);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--bd);">&#128231; 이메일 양식 미리보기</div>
+      <div style="font-size:13px;color:var(--mu);margin-bottom:6px;">받는 사람: <b style="color:var(--or);">bframe_studio@naver.com</b></div>
+      <div style="font-size:13px;color:var(--tx);line-height:1.9;background:white;border-radius:var(--rs);padding:12px;border:1px solid var(--bd);white-space:pre-line;" id="email-preview"></div>
+    </div>
+
+    <!-- 보정할 사진 전송 안내 -->
+    <div id="done-email-guide" class="fsec" style="margin-top:1rem;text-align:left;border-color:var(--t);background:var(--t-light);">
+      <div style="display:flex;align-items:flex-start;gap:10px;">
+        <span style="font-size:22px;flex-shrink:0;">&#128247;</span>
+        <div>
+          <div style="font-size:15px;font-weight:700;color:var(--t);margin-bottom:8px;">보정할 사진 전송 안내</div>
+          <div style="font-size:14px;color:var(--t);line-height:1.9;">
+            신청 완료 후, 보정할 사진을 아래 이메일로 보내주세요.<br>
+            <div style="margin-top:6px;font-size:13px;color:var(--t);line-height:1.9;">
+              &#183; 꼭 <b style="color:var(--t);">고화질 원본 사진</b>으로 보내주세요!!
+            </div>
+            <span style="display:inline-block;margin-top:8px;font-size:16px;font-weight:700;color:var(--or);">bframe_studio@naver.com</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- 유료: 입금 안내 -->
     <div id="done-paid-notice" style="display:none;background:var(--t-light);border:1.5px solid var(--t);border-radius:var(--r);padding:14px 16px;margin-top:1.25rem;text-align:left;">
-      <div style="font-size:15px;font-weight:700;color:var(--t);margin-bottom:10px;">입금계좌 안내</div>
+      <div style="font-size:15px;font-weight:700;color:var(--t);margin-bottom:10px;">입금 계좌 안내</div>
       <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
         <span style="font-size:16px;font-weight:700;color:var(--tx);">카카오뱅크 3333-34-8325017</span>
         <button onclick="copyAccount(this)" style="background:var(--t);color:white;border:none;border-radius:6px;padding:4px 10px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;">복사</button>
@@ -629,13 +650,6 @@ textarea { resize: none; }
       <div style="background:#FFF8E8;border-left:3px solid var(--or);border-radius:0 var(--rs) var(--rs) 0;padding:10px 14px;font-size:13px;color:#8A5A10;line-height:1.8;margin-top:10px;">
         &#9888;&#65039; 입금 확인 후 보정 작업이 진행됩니다.
       </div>
-    </div>
-
-    <!-- 이메일 양식 미리보기 -->
-    <div style="background:var(--bg);border:1px solid var(--bd);border-radius:var(--r);padding:16px;margin-top:1rem;text-align:left;">
-      <div style="font-size:13px;font-weight:700;color:var(--mu);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--bd);">&#128231; 이메일 양식 미리보기</div>
-      <div style="font-size:13px;color:var(--mu);margin-bottom:6px;">받는 사람: <b style="color:var(--or);">bframe_studio@naver.com</b></div>
-      <div style="font-size:13px;color:var(--tx);line-height:1.9;background:white;border-radius:var(--rs);padding:12px;border:1px solid var(--bd);white-space:pre-line;" id="email-preview"></div>
     </div>
 
     <!-- 이메일 전송 버튼 -->
@@ -653,13 +667,18 @@ textarea { resize: none; }
   </div>
 </div>
 <script>
-var ph=1, ex=0;
+var ph=1, ex=0, pr=0;
 
 function calc() {
-  var b=ph*8000, e=ex*ph*2000, t=b+e;
+  var b=ph*5000, e=ex*ph*2000, r=pr*3000, t=b+e+r;
   document.getElementById("pv").textContent=ph;
   document.getElementById("ev").textContent=ex;
-  document.getElementById("bl").textContent="기본 ("+ph+"장 x 8,000원)";
+  document.getElementById("rv").textContent=pr;
+  document.getElementById("rp-row").style.display=pr>0?"":"none";
+  document.getElementById("rl").textContent="인화 ("+pr+"장 x 3,000원)";
+  document.getElementById("rp").textContent=r.toLocaleString()+"원";
+  document.getElementById("addr-row").style.display=pr>0?"":"none";
+  document.getElementById("bl").textContent="보정 ("+ph+"장 x 5,000원)";
   document.getElementById("bp").textContent=b.toLocaleString()+"원";
   document.getElementById("ep-row").style.display=ex>0?"":"none";
   document.getElementById("el").textContent="추가 ("+ex+"명 x "+ph+"장 x 2,000원)";
@@ -669,6 +688,7 @@ function calc() {
 }
 function chP(d){ph=Math.max(1,ph+d);calc();}
 function chE(d){ex=Math.max(0,ex+d);calc();}
+function chR(d){pr=Math.max(0,pr+d);calc();}
 function submitR() {
   var name = document.getElementById("inp-name").value.trim();
   var phone = document.getElementById("inp-phone").value.trim();
@@ -679,12 +699,12 @@ function submitR() {
   var zip = document.getElementById("inp-zip").value.trim();
   var addr = document.getElementById("inp-addr").value.trim();
   var addr2 = document.getElementById("inp-addr2").value.trim();
-  if (!zip || !addr) { alert("우편번호 찾기로 주소를 입력해주세요."); findAddr(); return; }
-  if (!addr2) { alert("상세주소를 입력해주세요."); document.getElementById("inp-addr2").focus(); return; }
+  if (pr>0 && (!zip || !addr)) { alert("인화본을 받으실 주소를 우편번호 찾기로 입력해주세요."); findAddr(); return; }
+  if (pr>0 && !addr2) { alert("상세주소를 입력해주세요."); document.getElementById("inp-addr2").focus(); return; }
   // 완료 처리
   var name = document.getElementById("inp-name").value.trim();
   var phone = document.getElementById("inp-phone").value.trim();
-  var planText = "전문 보정";
+  var planText = "전문 작가 보정";
   var reqEl = document.querySelector("textarea");
   var req = reqEl ? reqEl.value.trim() : "";
 
@@ -697,10 +717,11 @@ function submitR() {
     "■ 예약자 성함: " + name + "\n" +
     "■ 연락처: " + phone + "\n" +
     "■ 촬영 지점: " + branch + "\n" +
-    "■ 우편 수령 주소: (" + zip + ") " + addr + " " + addr2 + "\n" +
+    "■ 보정본 인화: " + (pr>0 ? pr + "장 (우편 발송)" : "신청 안 함") + "\n" +
+    (pr>0 ? "■ 우편 수령 주소: (" + zip + ") " + addr + " " + addr2 + "\n" : "") +
     "■ 보정 종류: " + planText + "\n" +
     "■ 보정 장수: " + ph + "장\n" +
-    "■ 결제금액: " + (ph*8000+ex*ph*2000).toLocaleString() + "원\n" +
+    "■ 결제금액: " + (ph*5000+ex*ph*2000+pr*3000).toLocaleString() + "원\n" +
     "■ 요청사항: " + (req || "없음") + "\n\n" +
     "※ 이 이메일에 보정할 사진(고화질 원본)을 첨부해주세요.";
 
@@ -710,7 +731,7 @@ function submitR() {
   document.getElementById("ret-done").style.display="";
 }
 function resetR() {
-  ph=1; ex=0;
+  ph=1; ex=0; pr=0;
   document.getElementById("inp-branch").value="";
   document.getElementById("inp-zip").value="";
   document.getElementById("inp-addr").value="";
