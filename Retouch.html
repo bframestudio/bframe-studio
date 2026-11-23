@@ -607,7 +607,6 @@ textarea { resize: none; }
 
   <!-- 완료 화면 -->
   <div id="ret-done" class="done" style="display:none;">
-    <div class="done-ic" style="background:var(--or-light);border:2px solid var(--or);">&#128203;</div>
     <h3 style="color:var(--or);">신청 정보 확인</h3>
     <div style="background:#FFF8E8;border:1.5px solid var(--or);border-radius:var(--r);padding:14px 16px;margin-top:1rem;text-align:left;">
       <div style="font-size:15px;font-weight:700;color:var(--or);margin-bottom:6px;">&#9888;&#65039; 아직 보정이 시작되지 않았어요!</div>
@@ -617,7 +616,7 @@ textarea { resize: none; }
     <!-- 이메일 양식 미리보기 -->
     <div style="background:var(--bg);border:1px solid var(--bd);border-radius:var(--r);padding:16px;margin-top:1rem;text-align:left;">
       <div style="font-size:13px;font-weight:700;color:var(--mu);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--bd);">&#128231; 이메일 양식 미리보기</div>
-      <div style="font-size:13px;color:var(--mu);margin-bottom:6px;">받는 사람: <b style="color:var(--or);">bframe_studio@naver.com</b></div>
+      <div style="font-size:13px;color:var(--mu);margin-bottom:6px;">받는 사람: <b style="color:var(--or);">bframe_studio@naver.com</b><button onclick="copyAccount(this,'bframe_studio@naver.com')" style="background:var(--t);color:white;border:none;border-radius:6px;padding:4px 10px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;margin-left:8px;vertical-align:middle;">복사</button></div>
       <div style="font-size:13px;color:var(--tx);line-height:1.9;background:white;border-radius:var(--rs);padding:12px;border:1px solid var(--bd);white-space:pre-line;" id="email-preview"></div>
     </div>
 
@@ -632,7 +631,7 @@ textarea { resize: none; }
             <div style="margin-top:6px;font-size:13px;color:var(--t);line-height:1.9;">
               &#183; 꼭 <b style="color:var(--t);">고화질 원본 사진</b>으로 보내주세요!!
             </div>
-            <span style="display:inline-block;margin-top:8px;font-size:16px;font-weight:700;color:var(--or);">bframe_studio@naver.com</span>
+            <div style="margin-top:8px;"><span style="font-size:16px;font-weight:700;color:var(--or);">bframe_studio@naver.com</span><button onclick="copyAccount(this,'bframe_studio@naver.com')" style="background:var(--t);color:white;border:none;border-radius:6px;padding:4px 10px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;margin-left:8px;vertical-align:middle;">복사</button></div>
           </div>
         </div>
       </div>
@@ -663,7 +662,7 @@ textarea { resize: none; }
       <b style="color:var(--or);">고화질 원본 사진</b>으로 보내주세요
     </p>
 
-    <button class="rbtn" style="margin-top:1rem;" onclick="resetR()">다시 신청하기</button>
+    <button class="rbtn" style="margin-top:1rem;" onclick="backR()">신청 정보 수정</button>
   </div>
 </div>
 <script>
@@ -711,24 +710,29 @@ function submitR() {
   var paidNotice = document.getElementById("done-paid-notice");
   if (paidNotice) paidNotice.style.display = "";
 
-  var subject = encodeURIComponent("[보정신청] " + branch + " " + name + " (" + planText + ")");
+  var subject = encodeURIComponent("[보정신청] " + branch + " " + name  );
   var bodyText =
-    "[보정 신청 양식]\n\n" +
+    "[보정 신청 정보]\n\n" +
     "■ 예약자 성함: " + name + "\n" +
     "■ 연락처: " + phone + "\n" +
     "■ 촬영 지점: " + branch + "\n" +
+    "■ 요청사항: " + (req || "없음") + "\n" +
+    "■ 보정 장수: " + ph + "장\n" +
     "■ 보정본 인화: " + (pr>0 ? pr + "장 (우편 발송)" : "신청 안 함") + "\n" +
     (pr>0 ? "■ 우편 수령 주소: (" + zip + ") " + addr + " " + addr2 + "\n" : "") +
-    "■ 보정 종류: " + planText + "\n" +
-    "■ 보정 장수: " + ph + "장\n" +
-    "■ 결제금액: " + (ph*5000+ex*ph*2000+pr*3000).toLocaleString() + "원\n" +
-    "■ 요청사항: " + (req || "없음") + "\n\n" +
+    "■ 결제금액: " + (ph*5000+ex*ph*2000+pr*3000).toLocaleString() + "원\n\n" +
     "※ 이 이메일에 보정할 사진(고화질 원본)을 첨부해주세요.";
 
   document.getElementById("mailto-btn").href = "mailto:bframe_studio@naver.com?subject=" + subject + "&body=" + encodeURIComponent(bodyText);
   document.getElementById("email-preview").textContent = bodyText;
   document.getElementById("ret-main").style.display="none";
   document.getElementById("ret-done").style.display="";
+}
+// 입력 내용을 유지한 채 신청 화면으로 되돌아가기
+function backR() {
+  document.getElementById("ret-main").style.display="";
+  document.getElementById("ret-done").style.display="none";
+  window.scrollTo(0,0);
 }
 function resetR() {
   ph=1; ex=0; pr=0;
@@ -775,8 +779,8 @@ function closeAddr() {
   document.getElementById("addr-layer").style.display = "none";
 }
 
-function copyAccount(btn) {
-  var account = "3333-34-8325017";
+function copyAccount(btn, text) {
+  var account = text || "3333-34-8325017";
   if (navigator.clipboard) {
     navigator.clipboard.writeText(account).then(function() {
       btn.textContent = "복사됨!";
