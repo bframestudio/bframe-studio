@@ -486,8 +486,8 @@ textarea { resize: none; }
         <div>
           <div style="font-size:15px;font-weight:700;color:var(--or);margin-bottom:10px;">전문 보정 안내</div>
           <div style="font-size:14px;color:#8A5A10;line-height:1.9;display:flex;flex-direction:column;gap:4px;">
-            <div>&#127807; 1장당 <b style="color:#8A5A10;">5,000원</b> (2인 기준)</div>
-            <div>&#127807; 추가 인원 1인당 <b style="color:#8A5A10;">+3,000원/장</b></div>
+            <div>&#127807; 1장당 <b style="color:#8A5A10;">8,000원</b> (2인 기준 · 보정 5,000원 + 인화지 3,000원)</div>
+            <div>&#127807; 추가 인원 1인당 <b style="color:#8A5A10;">+2,000원/장</b></div>
             <div>&#127807; 레터링 문구 추가 무료</div>
             <div>&#127807; 안내 계좌로 입금 부탁드리며, <b style="color:#8A5A10;">입금 확인 후</b> 보정 작업이 진행됩니다.</div>
             <div>&#8986;&#65039; 보정 기간은 사진 수신일로부터 <b style="color:#8A5A10;">약 3일</b>이며, 파일은 <b style="color:#8A5A10;">보내신 이메일</b>로 회신됩니다.</div>
@@ -573,17 +573,17 @@ textarea { resize: none; }
           </div>
         </div>
         <div class="pbox">
-          <div class="prow"><span class="pl" id="bl">기본 (1장 x 5,000원)</span><span id="bp">5,000원</span></div>
+          <div class="prow"><span class="pl" id="bl">기본 (1장 x 8,000원)</span><span id="bp">8,000원</span></div>
           <div class="prow" id="ep-row" style="display:none;"><span class="pl" id="el">추가</span><span id="ep">0원</span></div>
           <hr class="pdiv">
-          <div class="ptot"><span class="tl">최종 결제 금액</span><span class="tv" id="tp">5,000원</span></div>
+          <div class="ptot"><span class="tl">최종 결제 금액</span><span class="tv" id="tp">8,000원</span></div>
         </div>
       </div>
 
       <!-- 결제 -->
       <div id="payment-sec" class="fsec" style="">
         <div class="ftl">결제</div>
-        <div class="pa"><span>결제 금액</span><span id="pay-tp">5,000원</span></div>
+        <div class="pa"><span>결제 금액</span><span id="pay-tp">8,000원</span></div>
         <div style="background:var(--t-light);border-radius:var(--r);padding:14px 16px;margin-bottom:10px;">
           <div style="font-size:13px;color:var(--mu);margin-bottom:6px;">입금 계좌</div>
           <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
@@ -656,13 +656,13 @@ textarea { resize: none; }
 var ph=1, ex=0;
 
 function calc() {
-  var b=ph*5000, e=ex*ph*3000, t=b+e;
+  var b=ph*8000, e=ex*ph*2000, t=b+e;
   document.getElementById("pv").textContent=ph;
   document.getElementById("ev").textContent=ex;
-  document.getElementById("bl").textContent="기본 ("+ph+"장 x 5,000원)";
+  document.getElementById("bl").textContent="기본 ("+ph+"장 x 8,000원)";
   document.getElementById("bp").textContent=b.toLocaleString()+"원";
   document.getElementById("ep-row").style.display=ex>0?"":"none";
-  document.getElementById("el").textContent="추가 ("+ex+"명 x "+ph+"장 x 3,000원)";
+  document.getElementById("el").textContent="추가 ("+ex+"명 x "+ph+"장 x 2,000원)";
   document.getElementById("ep").textContent=e.toLocaleString()+"원";
   document.getElementById("tp").textContent=t.toLocaleString()+"원";
   document.getElementById("pay-tp").textContent=t.toLocaleString()+"원";
@@ -700,7 +700,7 @@ function submitR() {
     "■ 우편 수령 주소: (" + zip + ") " + addr + " " + addr2 + "\n" +
     "■ 보정 종류: " + planText + "\n" +
     "■ 보정 장수: " + ph + "장\n" +
-    "■ 결제금액: " + (ph*5000+ex*ph*3000).toLocaleString() + "원\n" +
+    "■ 결제금액: " + (ph*8000+ex*ph*2000).toLocaleString() + "원\n" +
     "■ 요청사항: " + (req || "없음") + "\n\n" +
     "※ 이 이메일에 보정할 사진(고화질 원본)을 첨부해주세요.";
 
