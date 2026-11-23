@@ -727,6 +727,7 @@ function submitR() {
   document.getElementById("email-preview").textContent = bodyText;
   document.getElementById("ret-main").style.display="none";
   document.getElementById("ret-done").style.display="";
+  window.scrollTo(0,0); // 신청 정보 확인 화면의 맨 위부터 보이게
 }
 // 입력 내용을 유지한 채 신청 화면으로 되돌아가기
 function backR() {
