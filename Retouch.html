@@ -489,8 +489,9 @@ textarea { resize: none; }
             <div>&#127807; 1장당 <b style="color:#8A5A10;">5,000원</b> (2인 기준)</div>
             <div>&#127807; 추가 인원 1인당 <b style="color:#8A5A10;">+3,000원/장</b></div>
             <div>&#127807; 레터링 문구 추가 무료</div>
-            <div>&#127807; 보정본 인화 불가능</div>
             <div>&#127807; 안내 계좌로 입금 부탁드리며, <b style="color:#8A5A10;">입금 확인 후</b> 보정 작업이 진행됩니다.</div>
+            <div>&#8986;&#65039; 보정 기간은 사진 수신일로부터 <b style="color:#8A5A10;">약 3일</b>이며, 파일은 <b style="color:#8A5A10;">보내신 이메일</b>로 회신됩니다.</div>
+            <div>&#128236; 보정 인화본은 <b style="color:#8A5A10;">우편</b>으로 발송됩니다. (발송일: 매주 <b style="color:#8A5A10;">화·목요일</b>)</div>
           </div>
         </div>
       </div>
@@ -516,6 +517,15 @@ textarea { resize: none; }
           <option value="춘천강원대점">춘천강원대점</option>
           <option value="대전시청점">대전시청점</option>
         </select>
+      </div>
+      <div class="frow">
+        <label>보정본 받으실 주소 <span style="color:var(--or);">*</span></label>
+        <div style="display:flex;gap:8px;margin-bottom:8px;">
+          <input type="text" id="inp-zip" placeholder="우편번호" readonly onclick="findAddr()" style="flex:1;cursor:pointer;">
+          <button type="button" onclick="findAddr()" style="flex-shrink:0;padding:0 16px;border:1px solid var(--or);background:var(--or);color:#fff;border-radius:var(--r);font-size:14px;font-weight:700;cursor:pointer;">우편번호 찾기</button>
+        </div>
+        <input type="text" id="inp-addr" placeholder="우편번호 찾기를 눌러 주소를 선택해주세요" readonly onclick="findAddr()" style="margin-bottom:8px;cursor:pointer;">
+        <input type="text" id="inp-addr2" placeholder="상세주소 (동·호수 등)">
       </div>
     </div>
 
@@ -595,14 +605,6 @@ textarea { resize: none; }
       <textarea rows="3" placeholder="예) 피부 잡티 제거 / 머리숱 보강 / 얼굴·팔다리 라인 슬림하게 / 팔뚝·복부 라인 정리 / 턱선 갸름하게 / 레터링 문구 및 위치 기입 등"></textarea>
     </div>
 
-    <!-- 보정 완료 안내 -->
-    <div id="info-sec" style="background:var(--t-light);border-radius:var(--r);padding:14px 16px;margin-bottom:1rem;border:1px solid var(--bd);">
-      <div style="font-size:14px;color:var(--t);line-height:1.9;">
-        &#128231; 보정 완료된 사진은 <b style="color:var(--or);">사진 보내신 이메일</b>로 회신됩니다.<br>
-        &#8986;&#65039; 보정 기간은 사진 수신일로부터 <b style="color:var(--or);">약 3일</b> 소요됩니다.
-      </div>
-    </div>
-
     <button class="sbtn" id="sub-btn" onclick="submitR()">보정 신청하기</button>
   </div>
 
@@ -674,6 +676,11 @@ function submitR() {
   if (!phone) { alert("연락처를 입력해주세요."); document.getElementById("inp-phone").focus(); return; }
   var branch = document.getElementById("inp-branch").value;
   if (!branch) { alert("촬영한 지점을 선택해주세요."); document.getElementById("inp-branch").focus(); return; }
+  var zip = document.getElementById("inp-zip").value.trim();
+  var addr = document.getElementById("inp-addr").value.trim();
+  var addr2 = document.getElementById("inp-addr2").value.trim();
+  if (!zip || !addr) { alert("우편번호 찾기로 주소를 입력해주세요."); findAddr(); return; }
+  if (!addr2) { alert("상세주소를 입력해주세요."); document.getElementById("inp-addr2").focus(); return; }
   // 완료 처리
   var name = document.getElementById("inp-name").value.trim();
   var phone = document.getElementById("inp-phone").value.trim();
@@ -690,6 +697,7 @@ function submitR() {
     "■ 예약자 성함: " + name + "\n" +
     "■ 연락처: " + phone + "\n" +
     "■ 촬영 지점: " + branch + "\n" +
+    "■ 우편 수령 주소: (" + zip + ") " + addr + " " + addr2 + "\n" +
     "■ 보정 종류: " + planText + "\n" +
     "■ 보정 장수: " + ph + "장\n" +
     "■ 결제금액: " + (ph*5000+ex*ph*3000).toLocaleString() + "원\n" +
@@ -704,6 +712,9 @@ function submitR() {
 function resetR() {
   ph=1; ex=0;
   document.getElementById("inp-branch").value="";
+  document.getElementById("inp-zip").value="";
+  document.getElementById("inp-addr").value="";
+  document.getElementById("inp-addr2").value="";
   document.getElementById("ret-main").style.display="";
   document.getElementById("ret-done").style.display="none";
   calc();
@@ -711,6 +722,37 @@ function resetR() {
 }
 
 calc();
+
+// 다음(카카오) 우편번호 찾기
+function findAddr() {
+  if (location.protocol === "file:") {
+    // 파일을 직접 연 경우 우편번호 서비스 결과가 전달되지 않음 -> 직접 입력
+    var z = document.getElementById("inp-zip"), ad = document.getElementById("inp-addr");
+    z.readOnly = false; ad.readOnly = false;
+    alert("이 파일을 컴퓨터에서 직접 열면 우편번호 자동입력이 동작하지 않아요.\n(웹사이트에 올린 뒤에는 정상 동작합니다)\n우편번호와 주소를 직접 입력해주세요.");
+    z.focus();
+    return;
+  }
+  if (!window.daum || !daum.Postcode) { alert("우편번호 서비스를 불러오지 못했어요. 인터넷 연결을 확인해주세요."); return; }
+  var layer = document.getElementById("addr-layer");
+  var box = document.getElementById("addr-box");
+  layer.style.display = "flex";
+  box.innerHTML = "";
+  new daum.Postcode({
+    width: "100%", height: "100%",
+    oncomplete: function(d) {
+      closeAddr();
+      var a = d.userSelectedType === "R" ? d.roadAddress : d.jibunAddress;
+      if (d.userSelectedType === "R" && d.buildingName && d.apartment === "Y") a += " (" + d.buildingName + ")";
+      document.getElementById("inp-zip").value = d.zonecode;
+      document.getElementById("inp-addr").value = a;
+      document.getElementById("inp-addr2").focus();
+    }
+  }).embed(box);
+}
+function closeAddr() {
+  document.getElementById("addr-layer").style.display = "none";
+}
 
 function copyAccount(btn) {
   var account = "3333-34-8325017";
@@ -732,5 +774,12 @@ function copyAccount(btn) {
   }
 }
 </script>
+<div id="addr-layer" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9999;align-items:center;justify-content:center;padding:16px;">
+  <div style="width:100%;max-width:460px;height:min(560px,90vh);background:#fff;border-radius:12px;overflow:hidden;display:flex;flex-direction:column;">
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid #eee;font-size:14px;font-weight:700;">우편번호 찾기<button type="button" onclick="closeAddr()" style="border:none;background:none;font-size:22px;cursor:pointer;line-height:1;">&times;</button></div>
+    <div id="addr-box" style="flex:1;min-height:0;"></div>
+  </div>
+</div>
+<script src="https://t1.kakaocdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </body>
 </html>
